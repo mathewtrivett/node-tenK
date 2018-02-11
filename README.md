@@ -10,117 +10,120 @@ npm install node-tenK
 
 ## Projects
 ```
-Client.projects.list(fields).end() // Would return a JSON for all projects.
-Client.projects.get(project_id).end() // Would return an individual project.
-Client.projects.post(data).end() // Would post a new project.
-Client.projects.put(project_id,data).end()
+TenK.projects.all(options) // Would return a JSON for all projects.
+TenK.projects.show(projectId) // Would return an individual project.
+TenK.projects.update(projectId,data) // Would create a new project.
+TenK.projects.remove(projectId)
 ```
 
 ## Project Assignments
 
 ```
-Client.projects.assignments.list(project_id).end()//
-Client.projects.assignments.get(project_id, assignment_id).end()
+TenK.projects.assignments.all(projectId,) //
+TenK.projects.assignments.show(projectId, assignmentId)
 ```
 
 ## Bill Rates
 
 ### By Project
 ```
-Client.projects.bill_rates.list(project_id).end()
-Client.projects.bill_rates.get(project_id,bill_rates_id).end()
-Client.projects.bill_rates.post(project_id,data).end()
-Client.projects.bill_rates.put(project_id,bill_rate_id,data).end()
-Client.projects.bill_rates.delete(project_id,bill_rate_id).end()
+TenK.projects.bill_rates.all(projectId)
+TenK.projects.bill_rates.show(projectId, billRateId)
+TenK.projects.bill_rates.create(projectId,data)
+TenK.projects.bill_rates.update(projectId, billRateId, data)
+TenK.projects.bill_rates.remove(projectId, billRateId)
 ```
 
 ## By User
 ```
-Client.users.bill_rates.list(user_id).end()
-Client.users.bill_rates.get(user_id,bill_rate_id).end()
-Client.users.bill_rates.put(user_id,bill_rate_id,data).end()
-Client.users.bill_rates.delete(user_id,bill_rate_id).end()
+TenK.users.bill_rates.all(userId)
+TenK.users.bill_rates.show(userId,billRateId)
+TenK.users.bill_rates.update(userId,billRateId,data)
+TenK.users.bill_rates.remove(userId,billRateId)
 ```
 
 # Expense entries
 
 ## By Project
 ```
-Client.projects.expense_entries.list(project_id).end()
-Client.projects.expense_entries.get(project_id,expense_entry_id).end()
-Client.projects.expense_entries.post(project_id,data).end()
+TenK.projects.expense_entries.all(projectId)
+TenK.projects.expense_entries.show(projectId,expense_entry_id)
+TenK.projects.expense_entries.create(projectId,data)
 ```
 
 ## By User
 ```
-Client.users.expense_entries.list(user_id).end()
-Client.users.expense_entries.get(user_id,expense_entry_id).end()
-Client.users.expense_entries.delete(user_id,expense_entry_id).end()
+TenK.users.expense_entries.all(userId)
+TenK.users.expense_entries.show(userId,expense_entry_id)
+TenK.users.expense_entries.remove(userId,expense_entry_id)
 ```
 
 # Project tags
 ```
-Client.projects.tags.list(project_id).end() // Project tags
-Client.projects.tags.get(project_id,tag_id).end() // Project tag
+TenK.projects.tags.all(projectId) // Project tags
+TenK.projects.tags.show(projectId,tag_id) // Project tag
 ```
 
 
 # Time entries
 ```
-Client.projects.time_entries.list(project_id).end()
-Client.projects.time_entries.get(project_id, time_entry_id).end()
-Client.projects.time_entry_categories.list(project_id).end() //
+TenK.projects.time_entries.all(projectId)
+TenK.projects.time_entries.show(projectId, time_entry_id)
+TenK.projects.time_entry_categories.all(projectId) //
 ```
 
 ```
-Client.projects.phases.list(project_id).end() // Project phases
-Client.projects.placeholders.list(project_id).end() // Project phases
-Client.projects.users.list(project_id).end()
+TenK.projects.phases.all(projectId) // Project phases
+TenK.projects.placeholders.all(projectId) // Project phases
+TenK.projects.users.all(projectId)
 ```
 
 # Users
 ```
-Client.users.list(fields).end() // Would return a JSON for all users.
-Client.users.get(user_id).end() // Would return an individual user.
-Client.users.post(data).end()
-Client.users.tags.list(user_id).end()
+TenK.users.all(fields) // Would return a JSON for all users.
+TenK.users.show(userId) // Would return an individual user.
+TenK.users.create(data)
+TenK.users.tags.all(userId)
 ```
 
 # User Assignments
 
-Client.users.assignments.list(user_id).end()
-Client.users.assignments.post(user_id).end()
-Client.users.assignments.delete(user_id, assignment_id).end()
-Client.users.availability.list(user_id).end()
-Client.users.availability.get(user_id, availability_id).end()
-Client.users.availability.post(user_id,data).end()
-Client.users.availability.put(user_id,availability_id, data).end()
-Client.users.get(id).availability().delete(id).end()
-
+```
+TenK.users.assignments.all(userId)
+TenK.users.assignments.create(userId)
+TenK.users.assignments.remove(userId, assignment_id)
+TenK.users.availability.all(userId)
+TenK.users.availability.show(userId, availability_id)
+TenK.users.availability.create(userId,data)
+TenK.users.availability.update(userId,availability_id, data)
+TenK.users.show(id).availability().remove(id)
+```
 
 
 // Placeholders
 
-Client.placeholders.list(fields).end()
-Client.placeholders.get(id).end()
-Client.placeholders.post().end()
-Client.placeholders.put().end()
-Client.placeholders.delete().end()
-
+```
+TenK.placeholders.all(fields)
+TenK.placeholders.show(id)
+TenK.placeholders.create()
+TenK.placeholders.update()
+TenK.placeholders.remove()
+```
 
 // Disciplines
 
-Client.disciplines.list()
-Client.disciplines.get(id)
-
+```
+TenK.disciplines.all()
+TenK.disciplines.show(id)
+```
 
 //
 
 // Approvals signature
 
-Client.approvals.list().get().end()
-Client.approvals.post(data).end()
-Client.approvals.delete(id).end()
+TenK.approvals.all()
+TenK.approvals.create(data)
+TenK.approvals.remove(id)
 
 // Lists all holidays
-Client.holidays.list().end()
+TenK.holidays.all()
