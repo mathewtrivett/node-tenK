@@ -8,6 +8,16 @@ npm install node-tenK
 
 # Usage
 
+## Create a client
+
+```
+# Staging client
+const TenK = new TenK({token: 'YOUR_STAGING_API_TOKEN'});
+
+# Production client
+const TenK = new TenK({token: 'YOUR_PRODUCTION_API_TOKEN', api_base: 'https://app.10000ft.com/api/v1/'});
+```
+
 ## Projects
 ```
 TenK.projects.all(options) // Would return a JSON for all projects.
