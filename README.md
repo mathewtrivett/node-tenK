@@ -47,35 +47,35 @@ TenK.projects.assignments.show(projectId, assignmentId)
 
 ### By Project
 ```
-TenK.projects.bill_rates.all(projectId, options)
-TenK.projects.bill_rates.show(projectId, billRateId)
-TenK.projects.bill_rates.create(projectId,data)
-TenK.projects.bill_rates.update(projectId, billRateId, options)
-TenK.projects.bill_rates.remove(projectId, billRateId)
+TenK.projects.billRates.all(projectId, options)
+TenK.projects.billRates.show(projectId, billRateId)
+TenK.projects.billRates.create(projectId,data)
+TenK.projects.billRates.update(projectId, billRateId, options)
+TenK.projects.billRates.remove(projectId, billRateId)
 ```
 
 ## By User
 ```
-TenK.users.bill_rates.all(userId)
-TenK.users.bill_rates.show(userId,billRateId)
-TenK.users.bill_rates.update(userId,billRateId,data)
-TenK.users.bill_rates.remove(userId,billRateId)
+TenK.users.billRates.all(userId)
+TenK.users.billRates.show(userId,billRateId)
+TenK.users.billRates.update(userId,billRateId,data)
+TenK.users.billRates.remove(userId,billRateId)
 ```
 
 # Expense entries
 
 ## By Project
 ```
-TenK.projects.expense_entries.all(projectId)
-TenK.projects.expense_entries.show(projectId,expenseEntryId)
-TenK.projects.expense_entries.create(projectId,data)
+TenK.projects.expenseEntries.all(projectId)
+TenK.projects.expenseEntries.show(projectId,expenseEntryId)
+TenK.projects.expenseEntries.create(projectId,data)
 ```
 
 ## By User
 ```
-TenK.users.expense_entries.all(userId)
-TenK.users.expense_entries.show(userId,expenseEntryId)
-TenK.users.expense_entries.remove(userId,expenseEntryId)
+TenK.users.expenseEntries.all(userId)
+TenK.users.expenseEntries.show(userId,expenseEntryId)
+TenK.users.expenseEntries.remove(userId,expenseEntryId)
 ```
 
 # Project tags
@@ -87,10 +87,10 @@ TenK.projects.tags.show(projectId,tagId) // Project tag
 
 # Time entries
 ```
-TenK.projects.time_entries.all(projectId)
+TenK.projects.timeEntries.all(projectId)
 
 # Show a specific time entry
-TenK.projects.time_entries.show(projectId, time_entry_id)
+TenK.projects.timeEntries.show(projectId, time_entry_id)
 TenK.projects.time_entry_categories.all(projectId) //
 ```
 
