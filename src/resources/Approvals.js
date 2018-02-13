@@ -6,11 +6,11 @@ class Approvals extends Base {
   }
 
   all(options={}) {
-    return this.get(`approvals`,options);
+    return this.get(`approvals`, options);
   }
 
   create(options={}) {
-    return this.post(`approvals`,options);
+    return this.post(`approvals`, options);
   }
 
   remove(approvalId) {

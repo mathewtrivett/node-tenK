@@ -42,6 +42,14 @@ class TenK {
       this.billRates = new BillRates(``,this);
     }
 
+
+    /**
+    Builds a get reques
+    @param {string} endpoint - The URI to be appended to the api_base.
+    @param {Object} options - Any query string, body content or additional headers to include.
+    @returns {Promise} A Promise representing the state of the request.
+    */
+
     function get(endpoint, options) {
       return Request.get(defaultRequest(this.apiBase, endpoint, {
         headers: this.headers,

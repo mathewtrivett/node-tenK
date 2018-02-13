@@ -13,7 +13,7 @@ export class Projects extends Base {
   }
 
   all(options={}) {
-    return this.list('projects',options);
+    return this.get('projects',options);
   }
 
   show(projectId,options={}) {

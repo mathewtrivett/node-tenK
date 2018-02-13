@@ -5,7 +5,7 @@ class Tags extends Base {
   }
 
   all(resourceId,options={}) {
-    return this.list(`${this.resourceType}${resourceId}/tags`,options);
+    return this.get(`${this.resourceType}${resourceId}/tags`,options);
   }
 
   create(resourceId,options={}) {

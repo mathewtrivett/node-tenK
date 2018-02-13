@@ -7,13 +7,12 @@ export class Users extends Base {
     this.assignments = new Assignments(...args);
     this.availability = new Availabilities();
     this.expenseEntries = new ExpenseEntries();
-    this.billRates = new BillRates();
     this.timeEntries = new TimeEntries(`users/`,...args);
     this.tags = new Tags(`users/`,...args);
   }
 
   all(options={}) {
-    return this.list('users',options);
+    return this.get('users',options);
   }
 
   show(userId, options={}) {
