@@ -33,12 +33,13 @@ class TenK {
       this.projects = new Projects(this);
       this.users = new Users(this);
       this.placeholders = new Placeholders(this);
-      this.timeEntries = new TimeEntries(this);
       this.holidays = new Holidays(this);
       this.disciplines = new Disciplines(this);
       this.approvals = new Approvals(this);
       this.roles = new Roles(this);
       this.leaveTypes = new LeaveTypes(this);
+      this.timeEntries = new TimeEntries('',this);
+      this.billRates = new BillRates(``,this);
     }
 
     function get(endpoint, options) {

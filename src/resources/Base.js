@@ -1,10 +1,11 @@
+/**
+Base is what all other resource modules inherit their methods from.
+@param {Client} client - An instance of a TenK client, typically initialised when the Client is created.
+*/
+
 export class Base {
   constructor(client) {
     this.client = client;
-  }
-
-  list(endpoint,options = {}) {
-    return.this.client.get(endpoint,options);
   }
 
   get(endpoint,options = {}) {
