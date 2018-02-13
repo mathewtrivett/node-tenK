@@ -30,7 +30,7 @@ TenK.projects.show(projectId)
 TenK.projects.create(options)
 
 # Update a project
-TenK.projects.update(projectId,options)
+TenK.projects.update(projectId, options)
 
 # Delete a project
 TenK.projects.remove(projectId)
@@ -49,7 +49,7 @@ TenK.projects.assignments.show(projectId, assignmentId)
 ```
 TenK.projects.billRates.all(projectId, options)
 TenK.projects.billRates.show(projectId, billRateId)
-TenK.projects.billRates.create(projectId,data)
+TenK.projects.billRates.create(projectId, options)
 TenK.projects.billRates.update(projectId, billRateId, options)
 TenK.projects.billRates.remove(projectId, billRateId)
 ```
@@ -57,9 +57,9 @@ TenK.projects.billRates.remove(projectId, billRateId)
 ## By User
 ```
 TenK.users.billRates.all(userId)
-TenK.users.billRates.show(userId,billRateId)
-TenK.users.billRates.update(userId,billRateId,data)
-TenK.users.billRates.remove(userId,billRateId)
+TenK.users.billRates.show(userId, billRateId)
+TenK.users.billRates.update(userId, billRateId, options)
+TenK.users.billRates.remove(userId, billRateId)
 ```
 
 # Expense entries
@@ -67,21 +67,21 @@ TenK.users.billRates.remove(userId,billRateId)
 ## By Project
 ```
 TenK.projects.expenseEntries.all(projectId)
-TenK.projects.expenseEntries.show(projectId,expenseEntryId)
-TenK.projects.expenseEntries.create(projectId,data)
+TenK.projects.expenseEntries.show(projectId, expenseEntryId)
+TenK.projects.expenseEntries.create(projectId, options)
 ```
 
 ## By User
 ```
 TenK.users.expenseEntries.all(userId)
-TenK.users.expenseEntries.show(userId,expenseEntryId)
-TenK.users.expenseEntries.remove(userId,expenseEntryId)
+TenK.users.expenseEntries.show(userId, expenseEntryId)
+TenK.users.expenseEntries.remove(userId, expenseEntryId)
 ```
 
 # Project tags
 ```
 TenK.projects.tags.all(projectId) // Project tags
-TenK.projects.tags.show(projectId,tagId) // Project tag
+TenK.projects.tags.show(projectId, tagId) // Project tag
 ```
 
 
@@ -90,8 +90,8 @@ TenK.projects.tags.show(projectId,tagId) // Project tag
 TenK.projects.timeEntries.all(projectId)
 
 # Show a specific time entry
-TenK.projects.timeEntries.show(projectId, time_entry_id)
-TenK.projects.time_entry_categories.all(projectId) //
+TenK.projects.timeEntries.show(projectId, timeEntryId)
+TenK.projects.timeEntryCategories.all(projectId) //
 ```
 
 ```
@@ -109,7 +109,7 @@ TenK.projects.users.all(projectId)
 ```
 TenK.users.all(options) // Would return a JSON for all users.
 TenK.users.show(userId) // Would return an individual user.
-TenK.users.create(data)
+TenK.users.create(options)
 TenK.users.tags.all(userId)
 ```
 
@@ -118,23 +118,23 @@ TenK.users.tags.all(userId)
 ```
 TenK.users.assignments.all(userId)
 TenK.users.assignments.create(userId)
-TenK.users.assignments.remove(userId, assignment_id)
+TenK.users.assignments.remove(userId, assignmentId)
 TenK.users.availability.all(userId)
 TenK.users.availability.show(userId, availabilityId)
-TenK.users.availability.create(userId,data)
-TenK.users.availability.update(userId,availabilityId, data)
-TenK.users.availability.remove(userId,availabilityId)
+TenK.users.availability.create(userId, options)
+TenK.users.availability.update(userId, availabilityId, options)
+TenK.users.availability.remove(userId, availabilityId)
 ```
 
 
 # Placeholders
 
 ```
-TenK.placeholders.all(fields)
-TenK.placeholders.show(id)
-TenK.placeholders.create()
-TenK.placeholders.update()
-TenK.placeholders.remove()
+TenK.placeholders.all(options)
+TenK.placeholders.show(placeholderId)
+TenK.placeholders.create(options)
+TenK.placeholders.update(placeholderId, options)
+TenK.placeholders.remove(placeholderId)
 ```
 
 # Disciplines
@@ -147,7 +147,7 @@ TenK.disciplines.show(disciplineId)
 # Approvals signature
 ```
 TenK.approvals.all()
-TenK.approvals.create(data)
+TenK.approvals.create(options)
 TenK.approvals.remove(approvalId)
 ```
 
