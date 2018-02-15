@@ -13,6 +13,7 @@ export class Projects extends Base {
     this.phases = new Phases(`projects/`,...args);
     this.budgetItems = new BudgetItems(`projects/`,...args);
     this.expenseItemCategories = new ExpenseItemCategories(`projects/`,this);
+    this.assignments = new Assignments(`projects/`,this);
   }
 
   all(options={}) {

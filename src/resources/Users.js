@@ -10,14 +10,15 @@ export class Users extends Base {
     this.expenseEntries = new ExpenseEntries();
     this.timeEntries = new TimeEntries(`users/`,...args);
     this.tags = new Tags(`users/`,...args);
+    this.assignments = new Assignments('users/',...args);
   }
 
-  all(options={}) {
-    return this.get('users',options);
+  all(resourceId,options={}) {
+    return this.get(`${this.resourceType}${resourceId}/users`,options);
   }
 
-  show(userId, options={}) {
-    return this.get(`users/${userId}`, options);
+  show(resourceId,userId,options={}) {
+    return this.get(`${this.resourceType}${resourceId}users/${userId}`, options);
   }
 
   update(userId,options={}) {
