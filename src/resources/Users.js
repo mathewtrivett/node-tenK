@@ -2,8 +2,9 @@
 Users
 */
 export class Users extends Base {
-  constructor(...args) {
+  constructor(resourceType,...args) {
     super(...args);
+    this.resourceType = resourceType;
     this.assignments = new Assignments(...args);
     this.availability = new Availabilities();
     this.expenseEntries = new ExpenseEntries();

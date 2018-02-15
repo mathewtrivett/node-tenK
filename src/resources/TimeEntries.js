@@ -4,7 +4,7 @@ var Base = require('.Base.js');
 TimeEntries can be requested from the API's Base, from Projects or Users.
 
 @param {string} resourceType - A slug for the resource type on init. `` = API_BASE, `users/` = Users and `projects/` = Projects.
-@param {...args} args - 
+@param {...args} args -
 */
 
 class TimeEntries extends Base {
@@ -28,4 +28,9 @@ class TimeEntries extends Base {
   remove(resourceId,timeEntryID) {
     return this.delete(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`);
   }
+}
+
+
+class TimeEntryCategories {
+
 }

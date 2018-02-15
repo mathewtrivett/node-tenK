@@ -8,8 +8,11 @@ export class Projects extends Base {
     this.assignments = new Assignments(...args);
     this.billRates = new BillRates(`projects/`,...args);
     this.timeEntries = new TimeEntries(`projects/`,...args);
+    this.timeEntryCategories = new TimeEntryCategories('projects/',this);
     this.tags = new Tags(`projects/`,...args);
     this.phases = new Phases(`projects/`,...args);
+    this.budgetItems = new BudgetItems(`projects/`,...args);
+    this.expenseItemCategories = new ExpenseItemCategories(`projects/`,this);
   }
 
   all(options={}) {
