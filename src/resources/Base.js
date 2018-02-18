@@ -24,3 +24,5 @@ export class Base {
     return this.client.delete(endpoint,options);
   }
 }
+
+export { Base };

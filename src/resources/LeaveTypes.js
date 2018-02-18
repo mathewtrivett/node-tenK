@@ -1,6 +1,6 @@
 var Base = require('.Base,js');
 
-class LeaveTypes extends Base {
+export default class LeaveTypes extends Base {
   constructor(...args) {
     super(...args);
   }

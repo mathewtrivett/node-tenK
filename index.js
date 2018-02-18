@@ -1,5 +1,5 @@
-const morgan = require('morgan');
-const { Request } = require('request-promise');
+var { Request } = require('request-promise');
+var = require('.src/resources');
 
 /**
 Builds an object to create a request.
@@ -22,7 +22,7 @@ function defaultRequest(url, endpoint, { headers, body, qs}) {
 @param {string} auth_token - api token for 10000ft
 @param {string} api_base - defaults to the staging server if api_base not given.
 */
-export class TenK {
+class TenK {
     constructor(token, api_base) {
       this.authToken = token;
       this.apiBase = api_base ? api_base : 'https://vnext-api.10000ft.com/api/v1/';
@@ -45,31 +45,33 @@ export class TenK {
       this.expenseItemCategories = new ExpenseItemCategories(``,this);
     }
 
-    function get(endpoint, options) {
+    get(endpoint, options) {
       return Request.get(defaultRequest(this.apiBase, endpoint, {
         headers: this.headers,
         qs: options
       }));
     }
 
-    function post(endpoint,options) {
+    post(endpoint,options) {
       return Request.post(defaultRequest(this.apiBase, endpoint, {
         headers: this.headers,
         body: options
       }));
     }
 
-    function put(endpoint, options) {
+    put(endpoint, options) {
       return Request.put(defaultRequest(this.apiBase, endpoint, {
         headers: this.headers,
         body: options
       }));
     }
 
-    function delete(endpoint, options) {
+    delete(endpoint, options) {
       return Request.delete(defaultRequest(this.apiBase, endpoint, {
         headers: this.headers
       }));
 
     }
 }
+
+export { TenK }

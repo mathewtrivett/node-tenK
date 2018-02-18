@@ -1,4 +1,6 @@
-class Tags extends Base {
+var Base = require('.Base.js');
+
+export default class Tags extends Base {
   constructor(resourceType,...args) {
     super(...args);
     this.resourceType = resourceType;

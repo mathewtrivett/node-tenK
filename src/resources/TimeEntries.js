@@ -34,3 +34,5 @@ class TimeEntries extends Base {
 class TimeEntryCategories {
 
 }
+
+export { TimeEntries, TimeEntryCategories }

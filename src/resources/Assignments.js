@@ -26,3 +26,5 @@ class Assignments extends Base {
     return this.delete(`${this.resourceType}${resourceId}/assignments/${assignmentId}`);
   }
 }
+
+export { Assignments };

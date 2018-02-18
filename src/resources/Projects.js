@@ -1,7 +1,17 @@
+var { Base } = require('.Base.js');
+var { Assignments } = require('.Assignments.js');
+var { BillRates } =  require('.BillRates.js');
+var { TimeEntries } = require('.TimeEntries.js');
+var { TimeEntryCategories} = require('.TimeEntryCategories.js');
+var { Tags } = require('.Tags.js');
+var { Phases } = require('.Phases.js');
+var { BudgetItems} = require('.BudgetItems.js');
+var { ExpenseItemCategories } = require('.ExpenseItems.js');
+
 /**
 Projects
 */
-export class Projects extends Base {
+export defaults class Projects extends Base {
   constructor(...args) {
     super(...args);
     this.users = new Users(); // Need to pass in a resource type here?

@@ -1,6 +1,6 @@
 var Base = require('.Base.js');
 
-class ExpenseItems extends Base {
+export default class ExpenseItems extends Base {
   constructor(resourceType,...args) {
     super(...args);
     this.resourceType = resourceType;

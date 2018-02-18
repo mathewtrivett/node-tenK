@@ -1,13 +1,19 @@
+var Base = require('.Base.js');
+
+var { Assignments } = require('.Assignments.js');
+var { TimeEntries } = require('.TimeEntries.js');
+var { Tags } = require('.Tags.js');
+
 /**
 Users
 */
-export class Users extends Base {
+export default class Users extends Base {
   constructor(resourceType,...args) {
     super(...args);
     this.resourceType = resourceType;
     this.assignments = new Assignments(...args);
-    this.availability = new Availabilities();
-    this.expenseEntries = new ExpenseEntries();
+    this.availability = new Availabilities(...args);
+    this.expenseEntries = new ExpenseEntries(...args);
     this.timeEntries = new TimeEntries(`users/`,...args);
     this.tags = new Tags(`users/`,...args);
     this.assignments = new Assignments('users/',...args);

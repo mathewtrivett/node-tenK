@@ -1,6 +1,6 @@
 var Base = require('.Base,js');
 
-class Holidays extends Base {
+export default class Holidays extends Base {
   constructor(...args) {
     super(...args);
   }

@@ -1,7 +1,8 @@
+var Base = require('.Base.js');
 /**
 Phases
 */
-export class Phases extends Base {
+export default class Phases extends Base {
   constructor(resourceType,...args) {
     super(...args);
     this.resourceType = resourceType;
