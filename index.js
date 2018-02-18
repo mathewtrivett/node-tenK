@@ -14,7 +14,7 @@ function defaultRequest(url, endpoint, { headers, body, qs}) {
     headers: headers
   }
   if (body) { params.body = body };
-  if (qs) {param.qs = qs};
+  if (qs) {params.qs = qs};
   return params
 };
 
@@ -22,7 +22,7 @@ function defaultRequest(url, endpoint, { headers, body, qs}) {
 @param {string} auth_token - api token for 10000ft
 @param {string} api_base - defaults to the staging server if api_base not given.
 */
-class TenK {
+export class TenK {
     constructor(token, api_base) {
       this.authToken = token;
       this.apiBase = api_base ? api_base : 'https://vnext-api.10000ft.com/api/v1/';
@@ -45,13 +45,6 @@ class TenK {
       this.expenseItemCategories = new ExpenseItemCategories(``,this);
     }
 
-
-    /**
-    Builds a get request
-    @param {string} endpoint - The URI to be appended to the api_base.
-    @param {Object} options - Any query string, body content or additional headers to include.
-    @returns {Promise} A Promise representing the state of the request.
-    */
     function get(endpoint, options) {
       return Request.get(defaultRequest(this.apiBase, endpoint, {
         headers: this.headers,

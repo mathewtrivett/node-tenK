@@ -1,14 +1,21 @@
 {
   "name": "10000ft",
   "version": "1.0.0",
-  "description": "A wrapper for the 10000ft API.",
+  "description": "A thin client for the 10000ft API.",
+  "keywords": ["10000ft","10kft","client","time tracking","project management"],
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Mathew Trivett",
-  "license": "ISC",
+  "author": {
+    "name":"Mathew Trivett",
+    "email": "matt.trivett@gmail.com",
+    "url": "https://twitter.com/mathewtrivett"
+  },
+  "license": "MIT",
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^5.0.0",
     "sinon": "^4.3.0"
   },
