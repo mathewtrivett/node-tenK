@@ -1,6 +1,6 @@
 'use strict';
 
-var { Request } = require('request-promise');
+var Request = require('request-promise');
 var { Projects } = require('./src/resources/Projects.js');
 var { Users } = require('./src/resources/Users.js');
 var { Placeholders } = require('./src/resources/Placeholders.js');
@@ -63,9 +63,8 @@ class TenK {
       return Request(defaultRequest(this.apiBase, endpoint, {
         method: 'GET',
         headers: this.headers,
-        qs: options
-      }));
-    }
+        qs: options}));
+    };
 
     post(endpoint,options) {
       return Request(defaultRequest(this.apiBase, endpoint, {

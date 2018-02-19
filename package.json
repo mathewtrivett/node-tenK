@@ -2,13 +2,19 @@
   "name": "10000ft",
   "version": "1.0.0",
   "description": "A thin client for the 10000ft API.",
-  "keywords": ["10000ft","10kft","client","time tracking","project management"],
+  "keywords": [
+    "10000ft",
+    "10kft",
+    "client",
+    "time tracking",
+    "project management"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "author": {
-    "name":"Mathew Trivett",
+    "name": "Mathew Trivett",
     "email": "matt.trivett@gmail.com",
     "url": "https://twitter.com/mathewtrivett"
   },

@@ -1,8 +1,8 @@
 var { Base } = require('./Base.js');
 
 class ExpenseItems extends Base {
-  constructor(resourceType,client) {
-    super(client);
+  constructor(resourceType,...args) {
+    super(...args);
     this.resourceType = resourceType;
   }
 
@@ -29,12 +29,11 @@ class ExpenseItems extends Base {
   delete(budgetItemId) {
     return this.delete(`${this.resourceType}/budgetItems/${budgetItemId}`);
   }
+
 }
 
 class ExpenseItemCategories extends Base {
-  constructor(resourceType,client) {
-    super();
-  }
+
 }
 
-module.exports = { ExpenseItems, ExpenseItemCategories};
+module.exports = { ExpenseItems, ExpenseItemCategories }

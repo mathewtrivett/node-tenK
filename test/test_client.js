@@ -18,8 +18,6 @@ describe('Client',function() {
 
   describe('#initWithTokenAndAPIBase',function() {
     var client = new TenK('badtoken');
-    client.projects.all();
-
     // GIVEN
     // WHEN
     // THEN
