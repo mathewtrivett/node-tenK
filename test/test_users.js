@@ -11,30 +11,19 @@ describe('Users', function() {
       // GIVEN
       // var server = sinon.createFakeServer();
       // server.respondWith('GET', `${API_BASE}users`, JSON.stringify(users));
-
-      var client = new TenK('Wkt0MWJCYVJjb25KVVZNY1VxZTQxeXRTWE1iY1Y4endxQTI5akdaSVh6bGZ4bTVKYlg0ZlZEdFI4SVMwClE1RW5YbjdhNXhYRlZZeE10WFlibkgxRU56TkdDWkFPcEJPOFVUeGFab3ZPdkVZdXNHMUxxK1FBYXVCdgpnZXJIZ0tTSAo=');
+      var client = new TenK('test-token');
 
       // WHEN
-      client.users.all('').then(function(response) {
-        console.log(response);
-      }).catch(function(error) {
-        console.log(error);
-      });
-
-      client.projects.budgetItems.all(14138).then(function(response) {
-        console.log(response.data[0].phase_name);
-      });
-
       // THEN
     });
 
-    describe('#get', function() {
+    describe('#show', function() {
       // GIVEN
       // WHEN
       // THEN
     });
 
-    describe('#put', function() {
+    describe('#update', function() {
       // GIVEN
       // WHEN
       // THEN
