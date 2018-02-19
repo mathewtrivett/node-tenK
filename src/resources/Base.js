@@ -3,17 +3,17 @@ Base is what all other resource modules inherit their methods from.
 @param {Client} client - An instance of a TenK client, typically initialised when the Client is created.
 */
 
-export class Base {
+class Base {
   constructor(client) {
     this.client = client;
   }
 
   get(endpoint,options = {}) {
-    return.this.client.get(endpoint,options);
+    return this.client.get(endpoint,options);
   }
 
   post(endpoint,options = {}) {
-    return.this.client.post(endpoint, options);
+    return this.client.post(endpoint, options);
   }
 
   put(endpoint,options = {}) {
@@ -25,4 +25,4 @@ export class Base {
   }
 }
 
-export { Base };
+module.exports = { Base };

@@ -1,8 +1,8 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 /**
 Phases
 */
-export default class Phases extends Base {
+class Phases extends Base {
   constructor(resourceType,...args) {
     super(...args);
     this.resourceType = resourceType;
@@ -20,3 +20,5 @@ export default class Phases extends Base {
     return this.put(`${this.resourceType}${resourceId}/phases/${phaseId}`,options);
   }
 }
+
+module.exports = {Phases};

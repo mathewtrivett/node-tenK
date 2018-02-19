@@ -1,11 +1,13 @@
-var Base = require('.Base,js');
+var { Base } = require('./Base.js');
 
-export default class Holidays extends Base {
-  constructor(...args) {
-    super(...args);
+class Holidays extends Base {
+  constructor(client) {
+    super(client);
   }
 
   all(options={}) {
     return this.get(`holidays`,options);
   }
 }
+
+module.exports = { Holidays };

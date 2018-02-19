@@ -1,6 +1,6 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
-export default class Placeholders extends Base {
+class Placeholders extends Base {
   constructor(...args) {
     super(...args);
   }
@@ -26,3 +26,5 @@ export default class Placeholders extends Base {
   }
 
 }
+
+module.exports = { Placeholders };

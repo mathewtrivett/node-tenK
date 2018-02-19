@@ -1,8 +1,8 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
-export default class BillRates extends Base {
-  constructor(resourceType,...args) {
-    super(...args);
+class BillRates extends Base {
+  constructor(resourceType,client) {
+    super(client);
     this.resourceType = resourceType;
   }
 
@@ -25,5 +25,6 @@ export default class BillRates extends Base {
   remove(resourceId,billRateId) {
     return this.delete(`${this.resourceType}${resourceId}/bill_rates/${billRateId}`);
   }
-
 }
+
+module.exports = {BillRates};

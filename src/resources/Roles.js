@@ -1,6 +1,6 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
-export default class Roles extends Base {
+class Roles extends Base {
   constructor(...args) {
     super(...args);
   }
@@ -13,3 +13,5 @@ export default class Roles extends Base {
     return this.get(`roles/${roleId}`,options);
   }
 }
+
+module.exports = { Roles };

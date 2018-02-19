@@ -1,6 +1,6 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
-export default class Disciplines extends Base {
+class Disciplines extends Base {
   constructor(...args) {
     super(...args);
   }
@@ -13,3 +13,5 @@ export default class Disciplines extends Base {
     return this.get(`disciplines/${disciplineId}`);
   }
 }
+
+module.exports = { Disciplines };

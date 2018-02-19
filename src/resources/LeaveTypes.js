@@ -1,6 +1,6 @@
-var Base = require('.Base,js');
+var { Base } = require('./Base.js');
 
-export default class LeaveTypes extends Base {
+class LeaveTypes extends Base {
   constructor(...args) {
     super(...args);
   }
@@ -13,3 +13,5 @@ export default class LeaveTypes extends Base {
     return this.get(`leave_types/${leaveTypeId}`,options);
   }
 }
+
+module.exports = { LeaveTypes };

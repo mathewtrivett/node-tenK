@@ -1,5 +1,18 @@
+'use strict';
+
 var { Request } = require('request-promise');
-var = require('.src/resources');
+var { Projects } = require('./src/resources/Projects.js');
+var { Users } = require('./src/resources/Users.js');
+var { Placeholders } = require('./src/resources/Placeholders.js');
+var { Holidays } = require('./src/resources/Holidays.js');
+var { Disciplines } = require('./src/resources/Disciplines.js');
+var { Approvals } = require('./src/resources/Approvals.js');
+var { Roles } = require('./src/resources/Roles.js');
+var { LeaveTypes } = require('./src/resources/LeaveTypes.js');
+var { TimeEntries, TimeEntryCategories } = require('./src/resources/TimeEntries.js');
+var { BillRates } = require('./src/resources/BillRates.js');
+var { BudgetItems } = require('./src/resources/BudgetItems.js');
+var { ExpenseItemCategories } = require('./src/resources/ExpenseItems.js');
 
 /**
 Builds an object to create a request.
@@ -7,7 +20,7 @@ Builds an object to create a request.
 @param {string} endpoint - The resource URI endpoint.
 @param {Object} - An object containing key values for headers, body and qs expected by Request.
 */
-function defaultRequest(url, endpoint, { headers, body, qs}) {
+function defaultRequest(url, endpoint, { headers, body, qs, method}) {
   var params = {
     uri: `${url}${endpoint}`,
     json: true,
@@ -15,6 +28,7 @@ function defaultRequest(url, endpoint, { headers, body, qs}) {
   }
   if (body) { params.body = body };
   if (qs) {params.qs = qs};
+  if (method) {params.method = method};
   return params
 };
 
@@ -46,32 +60,35 @@ class TenK {
     }
 
     get(endpoint, options) {
-      return Request.get(defaultRequest(this.apiBase, endpoint, {
+      return Request(defaultRequest(this.apiBase, endpoint, {
+        method: 'GET',
         headers: this.headers,
         qs: options
       }));
     }
 
     post(endpoint,options) {
-      return Request.post(defaultRequest(this.apiBase, endpoint, {
+      return Request(defaultRequest(this.apiBase, endpoint, {
+        method: 'POST',
         headers: this.headers,
         body: options
       }));
     }
 
     put(endpoint, options) {
-      return Request.put(defaultRequest(this.apiBase, endpoint, {
+      return Request(defaultRequest(this.apiBase, endpoint, {
+        method: 'PUT',
         headers: this.headers,
         body: options
       }));
     }
 
     delete(endpoint, options) {
-      return Request.delete(defaultRequest(this.apiBase, endpoint, {
+      return Request(defaultRequest(this.apiBase, endpoint, {
+        method: 'DELETE',
         headers: this.headers
       }));
-
     }
 }
 
-export { TenK }
+module.exports = TenK;

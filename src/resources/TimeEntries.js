@@ -1,4 +1,4 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
 /**
 TimeEntries can be requested from the API's Base, from Projects or Users.
@@ -8,8 +8,8 @@ TimeEntries can be requested from the API's Base, from Projects or Users.
 */
 
 class TimeEntries extends Base {
-  constructor(resourceType,...args) {
-    super(...args);
+  constructor(resourceType,client) {
+    super(client);
     this.resourceType = resourceType;
   }
 
@@ -31,8 +31,11 @@ class TimeEntries extends Base {
 }
 
 
-class TimeEntryCategories {
-
+class TimeEntryCategories extends Base {
+  constructor(resourceType,client) {
+    super(client);
+    this.resourceType = resourceType;
+  }
 }
 
-export { TimeEntries, TimeEntryCategories }
+module.exports = { TimeEntries, TimeEntryCategories }

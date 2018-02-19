@@ -1,6 +1,6 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
-export default class Tags extends Base {
+class Tags extends Base {
   constructor(resourceType,...args) {
     super(...args);
     this.resourceType = resourceType;
@@ -18,3 +18,5 @@ export default class Tags extends Base {
     return this.delete(`${this.resourceType}${resourceId}/tags/${tagId}`,options);
   }
 }
+
+module.exports = {Tags};

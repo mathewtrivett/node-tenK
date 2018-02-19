@@ -1,8 +1,8 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
-export default class BudgetItems {
-  constructor(resourceType, ...args) {
-    super(...args);
+class BudgetItems {
+  constructor(resourceType,client) {
+    super.constructor(client);
     this.resourceType = resourceType;
   }
 
@@ -30,3 +30,5 @@ export default class BudgetItems {
     return this.delete(`${this.resourceType}/budgetItems/${budgetItemId}`);
   }
 }
+
+module.exports = { BudgetItems }

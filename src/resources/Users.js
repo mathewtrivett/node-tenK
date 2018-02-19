@@ -1,22 +1,23 @@
-var Base = require('.Base.js');
-
-var { Assignments } = require('.Assignments.js');
-var { TimeEntries } = require('.TimeEntries.js');
-var { Tags } = require('.Tags.js');
+var { Base } = require('./Base.js');
+var { Assignments } = require('./Assignments.js');
+var { TimeEntries } = require('./TimeEntries.js');
+var { Tags } = require('./Tags.js');
+var { Availabilities} = require('./Availabilities.js');
+var { ExpenseItems } = require('./ExpenseItems.js');
 
 /**
 Users
 */
-export default class Users extends Base {
-  constructor(resourceType,...args) {
-    super(...args);
+class Users extends Base {
+  constructor(resourceType,client) {
+    super(client);
     this.resourceType = resourceType;
-    this.assignments = new Assignments(...args);
-    this.availability = new Availabilities(...args);
-    this.expenseEntries = new ExpenseEntries(...args);
-    this.timeEntries = new TimeEntries(`users/`,...args);
-    this.tags = new Tags(`users/`,...args);
-    this.assignments = new Assignments('users/',...args);
+    this.assignments = new Assignments(client);
+    this.availability = new Availabilities(client);
+    this.expenseEntries = new ExpenseItems(client);
+    this.timeEntries = new TimeEntries(`users/`,client);
+    this.tags = new Tags(`users/`,client);
+    this.assignments = new Assignments('users/',client);
   }
 
   all(resourceId,options={}) {
@@ -31,3 +32,5 @@ export default class Users extends Base {
     return this.put(`users/${userId}`,options);
   }
 }
+
+module.exports = { Users };

@@ -1,4 +1,4 @@
-var Base = require('.Base.js');
+var { Base } = require('./Base.js');
 
 class Approvals extends Base {
   constructor(...args) {
@@ -18,4 +18,4 @@ class Approvals extends Base {
   }
 }
 
-export { Approvals };
+module.exports = { Approvals };
