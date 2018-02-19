@@ -9,7 +9,7 @@ var { ExpenseItems } = require('./ExpenseItems.js');
 Users
 */
 class Users extends Base {
-  constructor(resourceType,client) {
+  constructor(resourceType, client) {
     super(client);
     this.resourceType = resourceType;
     this.assignments = new Assignments(client);

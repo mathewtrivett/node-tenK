@@ -1,6 +1,6 @@
 'use strict';
 
-var Request = require('request-promise');
+var rp = require('request-promise');
 var { Projects } = require('./src/resources/Projects.js');
 var { Users } = require('./src/resources/Users.js');
 var { Placeholders } = require('./src/resources/Placeholders.js');
@@ -60,14 +60,14 @@ class TenK {
     }
 
     get(endpoint, options) {
-      return Request(defaultRequest(this.apiBase, endpoint, {
+      return rp(defaultRequest(this.apiBase, endpoint, {
         method: 'GET',
         headers: this.headers,
         qs: options}));
     };
 
     post(endpoint,options) {
-      return Request(defaultRequest(this.apiBase, endpoint, {
+      return rp(defaultRequest(this.apiBase, endpoint, {
         method: 'POST',
         headers: this.headers,
         body: options
@@ -75,7 +75,7 @@ class TenK {
     }
 
     put(endpoint, options) {
-      return Request(defaultRequest(this.apiBase, endpoint, {
+      return rp(defaultRequest(this.apiBase, endpoint, {
         method: 'PUT',
         headers: this.headers,
         body: options
@@ -83,7 +83,7 @@ class TenK {
     }
 
     delete(endpoint, options) {
-      return Request(defaultRequest(this.apiBase, endpoint, {
+      return rp(defaultRequest(this.apiBase, endpoint, {
         method: 'DELETE',
         headers: this.headers
       }));
