@@ -6,13 +6,12 @@ describe('Users', function() {
     // fake server call pattern: server.respondWith(method, url, response);
     var API_BASE = 'https://vnext-api.10000ft.com/api/v1/';
     var users = require('./data/users.json');
+    var client = new TenK('test-token');
 
     describe('#all', function() {
       // GIVEN
       // var server = sinon.createFakeServer();
-      // server.respondWith('GET', `${API_BASE}users`, JSON.stringify(users));
-      var client = new TenK('test-token');
-
+      it('should do something');
       // WHEN
       // THEN
     });
@@ -34,4 +33,11 @@ describe('Users', function() {
       // WHEN
       // THEN
     });
+});
+
+
+describe("User resources",function() {
+  describe('#tags',function() {
+    it("should do something");
+  });
 });

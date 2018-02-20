@@ -73,7 +73,7 @@ describe('Client',function() {
   });
 });
 
-describe('Client Root API Resources', function() {
+describe('Client Resources', function() {
   describe('#placeholders',function() {
     it('all() should return a list of all the placeholders');
     it('show(placeholderId) should return the placeholder for the given placeholderId');
