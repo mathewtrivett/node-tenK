@@ -91,4 +91,28 @@ describe('Client Resources', function() {
   describe('#disciplines',function() {
 
   });
+
+  describe("#timeEntries", function() {
+
+  });
+
+  describe("#timeEntryCategories", function() {
+
+  });
+
+  describe("#billRates",function() {
+
+  });
+
+  describe("#budgetItems", function() {
+
+  });
+
+  describe("#expenseItemCategories", function() {
+
+  });
+
+  describe("#approvals", function() {
+
+  });
 })

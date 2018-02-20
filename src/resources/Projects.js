@@ -15,16 +15,15 @@ Projects
 class Projects extends Base {
   constructor(client) {
     super(client);
-    this.users = new Users(`projects/`,client); // Need to pass in a resource type here?
-    this.assignments = new Assignments(client);
+    this.assignments = new Assignments(`projects/`,client);
     this.billRates = new BillRates(`projects/`, client);
-    this.timeEntries = new TimeEntries(`projects/`,client);
-    this.timeEntryCategories = new TimeEntryCategories('projects/',client);
-    this.tags = new Tags(`projects/`,client);
-    this.phases = new Phases(`projects/`,client);
     this.budgetItems = new BudgetItems(`projects/`,client);
     this.expenseItemCategories = new ExpenseItemCategories(`projects/`, client);
-    this.assignments = new Assignments(`projects/`,client);
+    this.phases = new Phases(`projects/`,client);
+    this.tags = new Tags(`projects/`,client);
+    this.timeEntries = new TimeEntries(`projects/`,client);
+    this.timeEntryCategories = new TimeEntryCategories('projects/',client);
+    this.users = new Users(`projects/`,client); // Need to pass in a resource type here?
   }
 
   all(options={}) {

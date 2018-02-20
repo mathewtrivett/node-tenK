@@ -40,4 +40,24 @@ describe("User resources",function() {
   describe('#tags',function() {
     it("should do something");
   });
+
+  describe("#assignments", function() {
+
+  });
+
+  describe("#availability",function() {
+
+  });
+
+  describe("#expenseEntries",function() {
+
+  });
+
+  describe("#timeEntries",function() {
+
+  });
+
+  describe("#tags",function() {
+
+  });
 });

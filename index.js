@@ -44,19 +44,19 @@ class TenK {
         'auth': this.authToken,
         'User-Agent': 'node-tenK',
       }
-      this.projects = new Projects(this);
-      this.users = new Users('',this);
-      this.placeholders = new Placeholders(this);
-      this.holidays = new Holidays(this);
-      this.disciplines = new Disciplines(this);
       this.approvals = new Approvals(this);
-      this.roles = new Roles(this);
-      this.leaveTypes = new LeaveTypes(this);
-      this.timeEntries = new TimeEntries('',this);
-      this.timeEntryCategories = new TimeEntryCategories('',this);
       this.billRates = new BillRates(``,this);
       this.budgetItems = new BudgetItems(``,this);
+      this.disciplines = new Disciplines(this);
       this.expenseItemCategories = new ExpenseItemCategories(``,this);
+      this.holidays = new Holidays(this);
+      this.leaveTypes = new LeaveTypes(this);
+      this.placeholders = new Placeholders(this);
+      this.projects = new Projects(this);
+      this.roles = new Roles(this);
+      this.timeEntries = new TimeEntries('',this);
+      this.timeEntryCategories = new TimeEntryCategories('',this);
+      this.users = new Users('',this);
     }
 
     get(endpoint, options) {

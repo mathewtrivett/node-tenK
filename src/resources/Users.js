@@ -12,12 +12,11 @@ class Users extends Base {
   constructor(resourceType, client) {
     super(client);
     this.resourceType = resourceType;
-    this.assignments = new Assignments(client);
+    this.assignments = new Assignments('users/',client);
     this.availability = new Availabilities(client);
     this.expenseEntries = new ExpenseItems(client);
-    this.timeEntries = new TimeEntries(`users/`,client);
     this.tags = new Tags(`users/`,client);
-    this.assignments = new Assignments('users/',client);
+    this.timeEntries = new TimeEntries(`users/`,client);
   }
 
   all(resourceId,options={}) {
