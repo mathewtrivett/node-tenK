@@ -1,4 +1,5 @@
 var expect = require('chai').expect;
+var sinon = require('sinon');
 var TenK = require('../index.js');
 var { Projects } = require('../src/resources/Projects.js');
 var { Users } = require('../src/resources/Users.js');
@@ -76,7 +77,12 @@ describe('Client',function() {
 describe('Client Resources', function() {
 
   describe("#approvals", function() {
-    it("should do something");
+    it("should should fetch approval objects when .all() is called");
+    // Given the server has approvals and is responsive to a given uri.
+    // When the client calls client.approvals.all().
+    // Then the response status code should be 200.
+    // Expect response.data to exist.
+    // Expect response.paging to exist.
   });
 
   describe("#billRates",function() {
