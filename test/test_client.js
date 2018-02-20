@@ -76,23 +76,23 @@ describe('Client',function() {
 describe('Client Resources', function() {
 
   describe("#approvals", function() {
-
+    it("should do something");
   });
 
   describe("#billRates",function() {
-
+    it("should do something");
   });
 
   describe("#budgetItems", function() {
-
+    it("should do something");
   });
 
   describe('#disciplines',function() {
-
+    it("should do something");
   });
 
   describe("#expenseItemCategories", function() {
-
+    it("should do something");
   });
 
   describe('#holidays',function() {
@@ -100,7 +100,7 @@ describe('Client Resources', function() {
   });
 
   describe('#leaveTypes',function() {
-
+    it("should do something");
   });
 
   describe('#placeholders',function() {
@@ -111,10 +111,10 @@ describe('Client Resources', function() {
 
 
   describe("#timeEntries", function() {
-
+    it("should do something");
   });
 
   describe("#timeEntryCategories", function() {
-
+    it("should do something");
   });
 })

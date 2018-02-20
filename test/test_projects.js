@@ -33,11 +33,20 @@ describe('Projects', function() {
       it("should do something");
     });
 
+    describe("#billRates", function() {
+      it("should do something");
+    });
+
     describe('#budgetItems', function() {
       it("should do something");
     });
 
+    describe('#expenseItemCategories',function(){
+      it("should do something");
+    });
+
     describe("#phases",function() {
+      it("should do something");
     });
 
     describe('#tags', function() {
@@ -45,6 +54,10 @@ describe('Projects', function() {
     });
 
     describe("#timeEntries",function() {
+      it("should do something");
+    });
+
+    describe("#timeEntryCategories",function() {
       it("should do something");
     });
 
