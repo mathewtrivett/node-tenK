@@ -75,14 +75,18 @@ describe('Client',function() {
 });
 
 describe('Client Resources', function() {
+  var client = new TenK('test-token');
 
   describe("#approvals", function() {
-    it("should should fetch approval objects when .all() is called");
-    // Given the server has approvals and is responsive to a given uri.
-    // When the client calls client.approvals.all().
-    // Then the response status code should be 200.
-    // Expect response.data to exist.
-    // Expect response.paging to exist.
+    it("should should fetch approval objects when .all() is called", function(done) {
+      // Given the server has approvals and is responsive to a given uri.
+      // When the client calls client.approvals.all().
+      var request = sinon.stub(client.approvals, 'all');
+      // Then the response status code should be 200.
+      // Expect response.data to exist.
+      // Expect response.paging to exist.
+      done();
+    });
   });
 
   describe("#billRates",function() {
