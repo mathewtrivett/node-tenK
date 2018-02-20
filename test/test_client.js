@@ -74,29 +74,8 @@ describe('Client',function() {
 });
 
 describe('Client Resources', function() {
-  describe('#placeholders',function() {
-    it('all() should return a list of all the placeholders');
-    it('show(placeholderId) should return the placeholder for the given placeholderId');
-    it('create(data) should create a new placeholder');
-  });
 
-  describe('#holidays',function() {
-    it('all() should return a list of all the holidays');
-  });
-
-  describe('#leaveTypes',function() {
-
-  });
-
-  describe('#disciplines',function() {
-
-  });
-
-  describe("#timeEntries", function() {
-
-  });
-
-  describe("#timeEntryCategories", function() {
+  describe("#approvals", function() {
 
   });
 
@@ -108,11 +87,34 @@ describe('Client Resources', function() {
 
   });
 
+  describe('#disciplines',function() {
+
+  });
+
   describe("#expenseItemCategories", function() {
 
   });
 
-  describe("#approvals", function() {
+  describe('#holidays',function() {
+    it('all() should return a list of all the holidays');
+  });
+
+  describe('#leaveTypes',function() {
+
+  });
+
+  describe('#placeholders',function() {
+    it('all() should return a list of all the placeholders');
+    it('show(placeholderId) should return the placeholder for the given placeholderId');
+    it('create(data) should create a new placeholder');
+  });
+
+
+  describe("#timeEntries", function() {
+
+  });
+
+  describe("#timeEntryCategories", function() {
 
   });
 })

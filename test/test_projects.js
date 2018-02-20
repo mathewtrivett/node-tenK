@@ -10,37 +10,45 @@ describe('Projects', function() {
     });
 
     describe('#show',function() {
+      it("should do something");
     });
 
     describe('#update',function() {
+      it("should do something");
     });
 
     describe('#create',function() {
+      it("should do something");
     });
 
     describe('#delete', function() {
+      it("should do something");
     });
 
   });
 
   describe('Project resources', function() {
-    describe('#users', function() {
+
+    describe("#assignments",function() {
       it("should do something");
     });
 
-    describe('#tags', function() {
-    });
-
     describe('#budgetItems', function() {
+      it("should do something");
     });
 
     describe("#phases",function() {
     });
 
-    describe("#timeEntries",function() {
+    describe('#tags', function() {
+      it("should do something");
     });
 
-    describe("#assignments",function() {
+    describe("#timeEntries",function() {
+      it("should do something");
+    });
 
+    describe('#users', function() {
+      it("should do something");
     });
 });

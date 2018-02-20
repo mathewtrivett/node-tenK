@@ -37,27 +37,25 @@ describe('Users', function() {
 
 
 describe("User resources",function() {
-  describe('#tags',function() {
+
+  describe("#assignments", function() {
     it("should do something");
   });
 
-  describe("#assignments", function() {
-
-  });
-
   describe("#availability",function() {
-
+    it("should do something");
   });
 
   describe("#expenseEntries",function() {
-
-  });
-
-  describe("#timeEntries",function() {
-
+    it("should do something");
   });
 
   describe("#tags",function() {
-
+    it("should do something");
   });
+
+  describe("#timeEntries",function() {
+    it("should do something");
+  });
+
 });
