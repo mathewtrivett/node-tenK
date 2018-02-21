@@ -33,7 +33,10 @@ class ExpenseItems extends Base {
 }
 
 class ExpenseItemCategories extends Base {
-
+  constructor(resourceType,client) {
+    super(client);
+    this.resourceType = resourceType;
+  }
 }
 
 module.exports = { ExpenseItems, ExpenseItemCategories }
