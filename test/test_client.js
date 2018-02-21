@@ -33,9 +33,10 @@ describe('Client',function() {
       done();
     });
 
-    it('should initialise the client property of attached resources',function(done) {
-      // And the client property associated with resources should be the same object as the root client.
+    it('should initialise users and projects resources as properties',function(done) {
+      expect(client.projects).to.be.an.instanceof(Projects);
       expect(client.projects.client).to.deep.equal(client);
+      expect(client.users).to.be.an.instanceof(Users);
       expect(client.projects.users.client).to.deep.equal(client);
       done();
     });
