@@ -8,7 +8,6 @@ var { BudgetItems} = require('./BudgetItems.js');
 var { ExpenseItemCategories } = require('./ExpenseItems.js');
 var { Users } = require('./Users.js');
 
-
 /**
 Projects
 */

@@ -1,4 +1,5 @@
 var expect = require('chai').expect;
+var nock = require('nock');
 var TenK = require('../index.js');
 var { Projects } = require('../src/resources/Projects.js');
 var { Users } = require('../src/resources/Users.js');
@@ -76,41 +77,67 @@ describe('Client',function() {
 describe('Client Resources', function() {
 
   describe("#approvals", function() {
+    // ideal list call client.approvals.all()
+    // ideal post call client.approvals.create()
+    // ideal delete call client.approvals.remove(4)
     it("should do something");
   });
 
   describe("#billRates",function() {
+    // ideal list call client.billRates.all()
+    // expect client.billRates.create(), client.billRates.remove() and billRates.show() to fail
     it("should do something");
   });
 
   describe("#budgetItems", function() {
+    // ideal list call client.budgetItems.all('itemType')
+    // ideal show call client.budgetItems.show(4)
+    // ideal update call client.budgetItems.update(4,{data object})
+    // ideal delete call client.budgetItems.remove(4)
+    // expect client.budgetItems.create({budgetItemsobject}) to fail
     it("should do something");
   });
 
   describe('#disciplines',function() {
+    // ideal list call client.disciplines.all()
+    // ideal show call client.disciplines.show(4)
+    // expect other methods [post,put,delete] to fail
     it("should do something");
   });
 
   describe("#expenseItemCategories", function() {
+    // ideal list call client.expenseItemCategories.all()
+    // expect other methods to fail
     it("should do something");
   });
 
   describe('#holidays',function() {
+    // ideal list call client.holidays.all()
     it('all() should return a list of all the holidays');
   });
 
   describe('#leaveTypes',function() {
+    // ideal list call client.leaveTypes.all()
+    // ideal show call client.leaveTypes.show(4)
+    // expect other methods [post,put,delete] to fail
     it("should do something");
   });
 
   describe('#placeholders',function() {
+    // ideal list call client.placeholders.all()
+    // ideal show call client.placeholders.show(4)
+    // ideal create call client.placeholders.create({title:""})
+    // ideal update call client.placeholders.update(4,{title:"newtitle"})
+    // ideal delete call client.placeholders.remove(4)
     it('all() should return a list of all the placeholders');
     it('show(placeholderId) should return the placeholder for the given placeholderId');
     it('create(data) should create a new placeholder');
   });
 
-
   describe("#timeEntries", function() {
+    // ideal list call client.timeEntries.all()
+    // ideal show call client.timeEntries.show(4)
+    // expect other methods to fail
     it("should do something");
   });
 
