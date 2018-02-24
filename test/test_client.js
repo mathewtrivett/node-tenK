@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var nock = require('nock');
 var TenK = require('../index.js');
+var _ = require('underscore');
 var { Projects } = require('../src/resources/Projects.js');
 var { Users } = require('../src/resources/Users.js');
 var { Placeholders } = require('../src/resources/Placeholders.js');
@@ -13,6 +14,7 @@ var { TimeEntries, TimeEntryCategories } = require('../src/resources/TimeEntries
 var { BillRates } = require('../src/resources/BillRates.js');
 var { BudgetItems } = require('../src/resources/BudgetItems.js');
 var { ExpenseItemCategories } = require('../src/resources/ExpenseItems.js');
+
 
 describe('Client',function() {
   describe('#initWithToken', function() {
@@ -61,37 +63,85 @@ describe('Client',function() {
 
 describe('Client Resources', function() {
   var client = new TenK('test-token');
+  var API_BASE = 'https://vnext-api.10000ft.com/api/v1';
 
   describe("#approvals", function() {
+    nock(API_BASE)
+      .get('/approvals')
+      .reply(200,{"data":[],"paging": {}})
+      .post('/approvals', function(body) {
+        function checkApprovables(items) {
+          var validKeys = ['id','type','updated_at'];
+          var validTypes = ['TimeEntry','ExpenseItem'];
+          return items.every(function(item) {
+            return _.isEqual(Object.getOwnPropertyNames(item).sort(),validKeys.sort()) && validTypes.includes(item.type);
+          }) && Array.isArray(items);
+        };
+
+        function checkBody(body) {
+          return body.hasOwnProperty('approvables') && body.hasOwnProperty('status');
+        };
+
+        return checkBody(body) && checkApprovables(body.approvables);
+      })
+      .reply(201,{"paging": {},"data": []})
+      .delete(/approvals\/\d+$/)
+      .reply(200);
+
     it("should be intialised on the client", function(done) {
       expect(client.approvals).to.be.an.instanceof(Approvals);
       expect(client.approvals.client).to.deep.equal(client);
       done();
     });
-    // ideal list call client.approvals.all()
-    // ideal post call client.approvals.create()
-    // ideal delete call client.approvals.remove(4)
 
-    it("should do something");
+    it("should respond to approvals.all() call", function() {
+      var response = client.approvals.all()
+      return response.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    });
+
+    it("should create approvals from a valid POST request", function() {
+      var data = {
+        approvables: [
+          {id:1, type:'TimeEntry', updated_at: new Date().toISOString()},
+          {id:2, type:'ExpenseItem', updated_at: new Date().toISOString()},
+          {id:3, type:'ExpenseItem', updated_at: new Date().toISOString()},
+        ],
+        status: 'pending'
+      };
+      var response = client.approvals.create(data);
+      return response.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    });
+
+    it("should delete an approval given a valid DELETE request",function() {
+      var response = client.approvals.remove(4);
+      return response.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#billRates",function() {
     // ideal list call client.billRates.all()
     // expect client.billRates.create(), client.billRates.remove() and billRates.show() to fail
+
+    nock(API_BASE).
+    get('/bill_rates');
+
     it("should be intialised on the client", function(done) {
       expect(client.billRates).to.be.an.instanceof(BillRates);
       expect(client.billRates.client).to.deep.equal(client);
       done();
     });
 
-    it("should should fetch approval objects when .all() is called", function(done) {
-      // Given the server has approvals and is responsive to a given uri.
-      // When the client calls client.approvals.all().
-      // Then the response status code should be 200.
-      // Expect response.data to exist.
-      // Expect response.paging to exist.
-      done();
-    });
+    it("should do sutin");
   });
 
   describe("#budgetItems", function() {

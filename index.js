@@ -24,7 +24,8 @@ function defaultRequest(url, endpoint, { headers, body, qs, method}) {
   var params = {
     uri: `${url}${endpoint}`,
     json: true,
-    headers: headers
+    headers: headers,
+    resolveWithFullResponse: true
   }
   if (body) { params.body = body };
   if (qs) {params.qs = qs};
