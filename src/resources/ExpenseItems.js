@@ -37,6 +37,10 @@ class ExpenseItemCategories extends Base {
     super(client);
     this.resourceType = resourceType;
   }
+
+  all(options={}) {
+    return this.get(`${this.resourceType}expense_item_categories`,options);
+  }
 }
 
 module.exports = { ExpenseItems, ExpenseItemCategories }

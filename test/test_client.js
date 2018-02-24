@@ -208,7 +208,7 @@ describe('Client Resources', function() {
   });
 
   describe('#disciplines',function() {
-    nock(API_BASE)
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
       .get('/disciplines')
       .reply(200,{'data':[],'paging':{}})
       .get(/disciplines\/\d+$/)
@@ -240,14 +240,22 @@ describe('Client Resources', function() {
   });
 
   describe("#expenseItemCategories", function(done) {
-    // ideal list call client.expenseItemCategories.all()
-    // expect other methods to fail
+    nock(API_BASE,{ reqheaders:{ 'auth':'test-token'} })
+      .get('/expense_item_categories')
+      .reply(200,{'data':[],'paging':{}});
+
     it('should be initialised on the client', function(done) {
       expect(client.expenseItemCategories).to.be.an.instanceof(ExpenseItemCategories);
       expect(client.expenseItemCategories.client).to.deep.equal(client);
       done();
     });
-    it("should do something");
+
+    it("should return a expense item categories with GET to /expense_item_categories", function () {
+      var req = client.expenseItemCategories.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe('#holidays',function(done) {
