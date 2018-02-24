@@ -7,10 +7,15 @@ class BudgetItems extends Base {
   }
 
   all(resourceId, options={}) {
-    return this.get(`${this.resourceType}${resourceId}/budget_items`, options);
+    if(arguments.length <= 1) {
+      options = resourceId;
+      return this.get(`${this.resourceType}budget_items`, options);
+    } else {
+      return this.get(`${this.resourceType}${resourceId}/budget_items`, options);
+    }
   }
 
-  show(resourceId, budgetItemId,options={}) {
+  show(resourceId, budgetItemId,options) {
     return this.get(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`, options);
   }
 

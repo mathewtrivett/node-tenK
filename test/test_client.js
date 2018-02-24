@@ -66,7 +66,7 @@ describe('Client Resources', function() {
   var API_BASE = 'https://vnext-api.10000ft.com/api/v1';
 
   describe("#approvals", function() {
-    nock(API_BASE,{ reqheaders:{ 'auth':'test-token'}})
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
       .get('/approvals')
       .reply(200,{"data":[],"paging": {}})
       .post('/approvals', function(body) {
@@ -133,7 +133,7 @@ describe('Client Resources', function() {
     // ideal list call client.billRates.all()
     // expect client.billRates.create(), client.billRates.remove() and billRates.show() to fail
 
-    nock(API_BASE)
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
       .get('/bill_rates')
       .reply(200,{'data':[],'paging':{}});
 
@@ -154,17 +154,39 @@ describe('Client Resources', function() {
   });
 
   describe("#budgetItems", function() {
-    // ideal list call client.budgetItems.all('itemType')
-    // ideal show call client.budgetItems.show(4)
-    // ideal update call client.budgetItems.update(4,{data object})
-    // ideal delete call client.budgetItems.remove(4)
-    // expect client.budgetItems.create({budgetItemsobject}) to fail
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get('/budget_items')
+      .query(function(query) {
+        var validItemTypes = ['TimeFees','TimeFeesDays','Expenses'];
+        return query.hasOwnProperty('item_type') && validItemTypes.includes(query.item_type);
+      })
+      .reply(200)
+      .get(/budget_items\/\d+$/)
+      .reply(200)
+      .put(/budget_items\/\d+$/,function(body) {
+        return body.hasOwnProperty('amount');
+      })
+      .reply(200)
+      .delete(/budget_items\/\d+$/)
+      .reply(200);
+
     it('should be initialised on the client', function(done) {
       expect(client.budgetItems).to.be.an.instanceof(BudgetItems);
       expect(client.budgetItems.client).to.deep.equal(client);
       done();
     });
-    it("should do something");
+
+    it("should fetch all the Time Fees with GET to /budget_items", function() {
+      var req = client.budgetItems.all({'item_type':'TimeFees'});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    // ideal list call client.budgetItems.all('itemType')
+    // ideal show call client.budgetItems.show(4)
+    // ideal update call client.budgetItems.update(4,{data object})
+    // ideal delete call client.budgetItems.remove(4)
   });
 
   describe('#disciplines',function() {
