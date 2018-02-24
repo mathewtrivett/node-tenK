@@ -29,13 +29,13 @@ describe('Client',function() {
       done();
     });
 
-    it('should have an apiBase set to the staging server',function(done) {
+    it('should have apiBase set to the staging server', function(done) {
       // The apiBase should be set to the staging server.
       expect(client.apiBase).to.match(/vnext/);
       done();
     });
 
-    it('should initialise users and projects resources as properties',function(done) {
+    it('should initialise users and projects resources as properties', function(done) {
       expect(client.projects).to.be.an.instanceof(Projects);
       expect(client.projects.client).to.deep.equal(client);
       expect(client.users).to.be.an.instanceof(Users);
@@ -54,7 +54,7 @@ describe('Client',function() {
       done();
     });
 
-    it('should have an apiBase set to the given uri', function(done) {
+    it('should have apiBase set to the given uri', function(done) {
       expect(client.apiBase).to.equal(uri);
       done();
     });
@@ -70,16 +70,17 @@ describe('Client Resources', function() {
       .get('/approvals')
       .reply(200,{"data":[],"paging": {}})
       .post('/approvals', function(body) {
+
+        function checkBody(body) {
+          return body.hasOwnProperty('approvables') && body.hasOwnProperty('status');
+        };
+
         function checkApprovables(items) {
           var validKeys = ['id','type','updated_at'];
           var validTypes = ['TimeEntry','ExpenseItem'];
           return items.every(function(item) {
             return _.isEqual(Object.getOwnPropertyNames(item).sort(),validKeys.sort()) && validTypes.includes(item.type);
           }) && Array.isArray(items);
-        };
-
-        function checkBody(body) {
-          return body.hasOwnProperty('approvables') && body.hasOwnProperty('status');
         };
 
         return checkBody(body) && checkApprovables(body.approvables);
@@ -94,7 +95,7 @@ describe('Client Resources', function() {
       done();
     });
 
-    it("should respond to approvals.all() call", function() {
+    it("should return all approvals with a GET request to /approvals", function() {
       var response = client.approvals.all()
       return response.then(function(res) {
         expect(res.statusCode).to.equal(200);
@@ -128,7 +129,7 @@ describe('Client Resources', function() {
     });
   });
 
-  describe("#billRates",function() {
+  describe("#billRates", function() {
     // ideal list call client.billRates.all()
     // expect client.billRates.create(), client.billRates.remove() and billRates.show() to fail
 
