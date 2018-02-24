@@ -160,7 +160,7 @@ describe('Client Resources', function() {
         var validItemTypes = ['TimeFees','TimeFeesDays','Expenses'];
         return query.hasOwnProperty('item_type') && validItemTypes.includes(query.item_type);
       })
-      .reply(200)
+      .reply(200,{'data':[],'paging':{}})
       .get(/budget_items\/\d+$/)
       .reply(200)
       .put(/budget_items\/\d+$/,function(body) {
@@ -176,29 +176,67 @@ describe('Client Resources', function() {
       done();
     });
 
-    it("should fetch all the Time Fees with GET to /budget_items", function() {
-      var req = client.budgetItems.all({'item_type':'TimeFees'});
+    it('should fetch all the Time Fees with GET to /budget_items', function() {
+      var req = client.budgetItems.all({item_type:'TimeFees'});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    });
+
+    it('should return a budget item by ID with GET to /budget_items/<id>', function() {
+      var req = client.budgetItems.show(4)
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
-    // ideal list call client.budgetItems.all('itemType')
-    // ideal show call client.budgetItems.show(4)
-    // ideal update call client.budgetItems.update(4,{data object})
-    // ideal delete call client.budgetItems.remove(4)
+    it('should update a budget item by ID with PUT to /budget_items/<id>', function() {
+      var req = client.budgetItems.update(4, {amount:1001});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should delete a budget item by ID with DELETE to /budget_items/<id>', function() {
+      var req = client.budgetItems.remove(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe('#disciplines',function() {
-    // ideal list call client.disciplines.all()
-    // ideal show call client.disciplines.show(4)
-    // expect other methods [post,put,delete] to fail
+    nock(API_BASE)
+      .get('/disciplines')
+      .reply(200,{'data':[],'paging':{}})
+      .get(/disciplines\/\d+$/)
+      .reply(200, { 'data':[], 'paging':{} });
+
     it('should be initialised on the client', function(done) {
       expect(client.disciplines).to.be.an.instanceof(Disciplines);
       expect(client.disciplines.client).to.deep.equal(client);
       done();
     });
-    it("should do something");
+
+    it('should return all disciplines for an account with GET to /disciplines', function() {
+      var req = client.disciplines.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    });
+
+    it('should return a discipline with a GET to /disciplines/<id>', function() {
+      var req = client.disciplines.show(10000);
+      return req.then(function(res){
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    })
   });
 
   describe("#expenseItemCategories", function(done) {

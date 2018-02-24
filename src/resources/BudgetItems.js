@@ -15,7 +15,11 @@ class BudgetItems extends Base {
     }
   }
 
-  show(resourceId, budgetItemId,options) {
+  show(resourceId, budgetItemId, options) {
+    if(arguments.length <= 2) {
+      options = budgetItemId
+      return this.get(`${this.resourceType}budget_items/${resourceId}`, options);
+    }
     return this.get(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`, options);
   }
 
@@ -24,15 +28,16 @@ class BudgetItems extends Base {
   }
 
   update(resourceId, budgetItemId, options) {
-    if (arguments.length === 2) {
-      return this.put(`${this.resourceType}/budget_items/${budgetItemId}`,options);
+    if (arguments.length <= 2) {
+      options = budgetItemId
+      return this.put(`${this.resourceType}budget_items/${resourceId}`,options);
     } else {
       return this.put(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`,options);
     }
   }
 
-  delete(budgetItemId) {
-    return this.delete(`${this.resourceType}/budgetItems/${budgetItemId}`);
+  remove(budgetItemId) {
+    return this.delete(`${this.resourceType}budget_items/${budgetItemId}`);
   }
 }
 
