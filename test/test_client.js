@@ -268,7 +268,7 @@ describe('Client Resources', function() {
       expect(client.holidays.client).to.deep.equal(client);
       done();
     });
-    
+
     it('should return holidays with a GET to /holidays', function() {
       var req = client.holidays.all();
       return req.then(function(res) {
@@ -278,15 +278,35 @@ describe('Client Resources', function() {
   });
 
   describe('#leaveTypes',function() {
-    // ideal list call client.leaveTypes.all()
-    // ideal show call client.leaveTypes.show(4)
-    // expect other methods [post,put,delete] to fail
-    it("should be initialised on the client",function(done) {
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get('/leave_types')
+      .reply(200,{'data':[],'paging':{}})
+      .get(/leave_types\/\d+$/)
+      .reply(200,{'data':[],'paging':{}});
+
+    it('should be initialised on the client',function(done) {
       expect(client.leaveTypes).to.be.an.instanceof(LeaveTypes);
       expect(client.leaveTypes.client).to.deep.equal(client);
       done();
     });
-    it("should do something");
+
+    it('should return leave types with a GET to /leave_types', function() {
+      var req = client.leaveTypes.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    });
+
+    it('should return a leave type by id with GET to /leave_types/<id>', function() {
+      var req = client.leaveTypes.show(100000);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      })
+    });
   });
 
   describe('#placeholders',function() {
