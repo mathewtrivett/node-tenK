@@ -310,6 +310,21 @@ describe('Client Resources', function() {
   });
 
   describe('#placeholders',function() {
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get('/placeholders')
+      .reply(200)
+      .get(/placeholders\/\d+$/)
+      .reply(200)
+      .post('/placeholders',function(body) {
+
+      })
+      .reply(201)
+      .put(/placeholders\/\d+$/,function(body) {
+
+      })
+      .reply(200)
+      .delete(/placeholders\/\d+$/)
+      .reply(200)
     // ideal list call client.placeholders.all()
     // ideal show call client.placeholders.show(4)
     // ideal create call client.placeholders.create({title:""})
@@ -320,9 +335,16 @@ describe('Client Resources', function() {
       expect(client.placeholders.client).to.deep.equal(client);
       done();
     });
-    it('all() should return a list of all the placeholders');
-    it('show(placeholderId) should return the placeholder for the given placeholderId');
-    it('create(data) should create a new placeholder');
+
+    it('should return placeholders with GET to /placeholders');
+
+    it('should return a placeholder by id with GET to /placeholders/<id>');
+
+    it('should create a placeholder with valid POST to /placeholders');
+
+    it('should update a placeholder by id with PUT to /placeholders/<id>');
+    
+    it('should delete a placeholder by id with DELETE to /placeholders/<id>');
   });
 
   describe("#timeEntries", function() {
