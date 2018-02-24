@@ -259,13 +259,22 @@ describe('Client Resources', function() {
   });
 
   describe('#holidays',function(done) {
-    // ideal list call client.holidays.all()
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get('/holidays')
+      .reply(200,{'data':[],'paging':{}});
+
     it('should be initialised on the client', function(done) {
       expect(client.holidays).to.be.an.instanceof(Holidays);
       expect(client.holidays.client).to.deep.equal(client);
       done();
     });
-    it('all() should return a list of all the holidays');
+    
+    it('should return holidays with a GET to /holidays', function() {
+      var req = client.holidays.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe('#leaveTypes',function() {
