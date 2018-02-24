@@ -7,7 +7,11 @@ class BillRates extends Base {
   }
 
   all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/bill_rates`,options);
+    if(arguments.length <= 1) {
+      return this.get(`${this.resourceType}bill_rates`,options);
+    } else {
+      return this.get(`${this.resourceType}${resourceId}/bill_rates`,options);
+    }
   }
 
   show(resourceId,billRateId,options={}) {

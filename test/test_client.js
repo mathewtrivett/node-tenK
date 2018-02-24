@@ -66,7 +66,7 @@ describe('Client Resources', function() {
   var API_BASE = 'https://vnext-api.10000ft.com/api/v1';
 
   describe("#approvals", function() {
-    nock(API_BASE)
+    nock(API_BASE,{ reqheaders:{ 'auth':'test-token'}})
       .get('/approvals')
       .reply(200,{"data":[],"paging": {}})
       .post('/approvals', function(body) {
@@ -96,8 +96,8 @@ describe('Client Resources', function() {
     });
 
     it("should return all approvals with a GET request to /approvals", function() {
-      var response = client.approvals.all()
-      return response.then(function(res) {
+      var req = client.approvals.all()
+      return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data');
         expect(res.body).to.have.property('paging');
@@ -113,8 +113,8 @@ describe('Client Resources', function() {
         ],
         status: 'pending'
       };
-      var response = client.approvals.create(data);
-      return response.then(function(res) {
+      var req = client.approvals.create(data);
+      return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
         expect(res.body).to.have.property('data');
         expect(res.body).to.have.property('paging');
@@ -122,8 +122,8 @@ describe('Client Resources', function() {
     });
 
     it("should delete an approval given a valid DELETE request",function() {
-      var response = client.approvals.remove(4);
-      return response.then(function(res) {
+      var req = client.approvals.remove(4);
+      return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
@@ -133,8 +133,9 @@ describe('Client Resources', function() {
     // ideal list call client.billRates.all()
     // expect client.billRates.create(), client.billRates.remove() and billRates.show() to fail
 
-    nock(API_BASE).
-    get('/bill_rates');
+    nock(API_BASE)
+      .get('/bill_rates')
+      .reply(200,{'data':[],'paging':{}});
 
     it("should be intialised on the client", function(done) {
       expect(client.billRates).to.be.an.instanceof(BillRates);
@@ -142,7 +143,14 @@ describe('Client Resources', function() {
       done();
     });
 
-    it("should do sutin");
+    it("should return account specific bill rates with a GET to /bill_rates",function() {
+      var req = client.billRates.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data');
+        expect(res.body).to.have.property('paging');
+      });
+    });
   });
 
   describe("#budgetItems", function() {
