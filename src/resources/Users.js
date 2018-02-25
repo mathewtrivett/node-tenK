@@ -20,11 +20,24 @@ class Users extends Base {
   }
 
   all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/users`,options);
+    if(arguments.length <=1) {
+      return this.get(`${this.resourceType}users`,options);
+    } else {
+      return this.get(`${this.resourceType}${resourceId}/users`,options);
+    }
   }
 
   show(resourceId,userId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}users/${userId}`, options);
+    if(arguments.length <=2) {
+      options = userId;
+      return this.get(`${this.resourceType}users/${resourceId}`, options);
+    } else {
+      return this.get(`${this.resourceType}${resourceId}users/${userId}`, options);
+    }
+  }
+
+  create(options={}) {
+    return this.post(`users`, options);
   }
 
   update(userId,options={}) {
