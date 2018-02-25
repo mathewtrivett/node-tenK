@@ -3,11 +3,11 @@ var nock = require('nock');
 var TenK = require('../index.js');
 var _ = require('underscore');
 
+var API_BASE = 'https://vnext-api.10000ft.com/api/v1/';
+var client = new TenK('test-token');
+
 describe('Users', function() {
     // fake server call pattern: server.respondWith(method, url, response);
-    var API_BASE = 'https://vnext-api.10000ft.com/api/v1/';
-    var client = new TenK('test-token');
-
     describe('#all', function() {
       nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
         .get('/users')
@@ -146,11 +146,50 @@ describe('Users', function() {
     });
 });
 
-
 describe("User resources",function() {
 
   describe("#assignments", function() {
-    it("should do something");
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get(/users\/\d+\/assignments$/)
+      .reply(200,{data:[],paging:{}})
+      .get(/users\/\d+\/assignments\/\d+$/)
+      .reply(200,{data:[],paging:{}})
+      .post(/users\/\d+\/assignments$/)
+      .reply(201)
+      .delete(/users\/\d+\/assignments\/\d+$/)
+      .reply(200)
+
+    it("should list assignments for a given user", function() {
+      var req = client.users.assignments.all(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      });
+    });
+
+    it("should show an assignment for a given user",function() {
+      var req = client.users.assignments.show(4,1);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      });
+    });
+
+    it("should create an assignment for a user",function() {
+      var req = client.users.assignments.create(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+      });
+    });
+
+    it("should delete an assignment for a user", function() {
+      var req = client.users.assignments.remove(4,1);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#availability",function() {

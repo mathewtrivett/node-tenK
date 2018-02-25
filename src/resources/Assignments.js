@@ -18,10 +18,6 @@ class Assignments extends Base {
     return this.post(`${this.resourceType}${resourceId}/assignments`,options);
   }
 
-  update(resourceId,assignmentId,options={}) {
-    return this.put(`${this.resourceType}${resourceId}/assignments/${assignmentId}`,options);
-  }
-
   remove(resourceId,assignmentId) {
     return this.delete(`${this.resourceType}${resourceId}/assignments/${assignmentId}`);
   }
