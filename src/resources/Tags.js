@@ -14,7 +14,7 @@ class Tags extends Base {
     return this.post(`${this.resourceType}${resourceId}/tags`,options);
   }
 
-  remove(resourceId, tagId,options={}) {
+  remove(resourceId,tagId,options={}) {
     return this.delete(`${this.resourceType}${resourceId}/tags/${tagId}`,options);
   }
 }

@@ -69,7 +69,6 @@ describe('Client Resources', function() {
       .get('/approvals')
       .reply(200,{"data":[],"paging": {}})
       .post('/approvals', function(body) {
-
         function checkBody(body) {
           return body.hasOwnProperty('approvables') && body.hasOwnProperty('status');
         };
@@ -81,7 +80,6 @@ describe('Client Resources', function() {
             return _.isEqual(Object.getOwnPropertyNames(item).sort(),validKeys.sort()) && validTypes.includes(item.type);
           }) && Array.isArray(items);
         };
-
         return checkBody(body) && checkApprovables(body.approvables);
       })
       .reply(201,{"paging": {},"data": []})
@@ -310,19 +308,19 @@ describe('Client Resources', function() {
 
   describe('#placeholders',function() {
     nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
-      .get('/placeholders')
-      .reply(200)
-      .get(/placeholders\/\d+$/)
-      .reply(200)
-      .post('/placeholders',function(body) {
-
+      .get('/placeholder_resources')
+      .reply(200,{data:[],paging:{}})
+      .get(/placeholder_resources\/\d+$/)
+      .reply(200,{data:[],paging:{}})
+      .post('/placeholder_resources',function(body) {
+        return body.hasOwnProperty('title');
       })
       .reply(201)
-      .put(/placeholders\/\d+$/,function(body) {
-
+      .put(/placeholder_resources\/\d+$/,function(body) {
+        return body.hasOwnProperty('title');
       })
       .reply(200)
-      .delete(/placeholders\/\d+$/)
+      .delete(/placeholder_resources\/\d+$/)
       .reply(200)
 
     it("should be initialised on the client",function(done) {
@@ -331,23 +329,52 @@ describe('Client Resources', function() {
       done();
     });
 
-    it('should return placeholders with GET to /placeholders'); // ideal list call client.placeholders.all()
+    it('should return placeholders with GET to /placeholder_resources',function() {
+      var req = client.placeholders.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      })
+    });
 
-    it('should return a placeholder by id with GET to /placeholders/<id>'); // ideal show call client.placeholders.show(4)
+    it('should return a placeholder by id with GET to /placeholder_resources/<id>',function() {
+      var req = client.placeholders.show(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      });
+    });
 
-    it('should create a placeholder with valid POST to /placeholders'); // ideal create call client.placeholders.create({title:""})
+    it('should create a placeholder with valid POST to /placeholder_resources',function() {
+      var req = client.placeholders.create({title:'Placeholder test'});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+      });
+    });
 
-    it('should update a placeholder by id with PUT to /placeholders/<id>'); // ideal update call client.placeholders.update(4,{title:"newtitle"})
+    it('should update a placeholder by id with PUT to /placeholder_resources/<id>',function() {
+      var req = client.placeholders.update(4,{title:'New title'});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
 
-    it('should delete a placeholder by id with DELETE to /placeholders/<id>'); // ideal delete call client.placeholders.remove(4)
+    it('should delete a placeholder by id with DELETE to /placeholder_resources/<id>',function() {
+      var req = client.placeholders.remove(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      })
+    });
   });
 
   describe("#timeEntries", function() {
     nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
       .get('/time_entries')
-      .reply(200)
-      .get(/timeEntries\/\d+$/)
-      .reply(200);
+      .reply(200,{data:[],paging:{}})
+      .get(/time_entries\/\d+$/)
+      .reply(200,{data:[],paging:{}});
 
     it("should be initialised on the client",function(done) {
       expect(client.timeEntries).to.be.an.instanceof(TimeEntries);
@@ -355,14 +382,30 @@ describe('Client Resources', function() {
       done();
     });
 
-    it("should do something");
+    it("should return time entries with a GET to /time_entries",function() {
+      var req = client.timeEntries.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      });
+    });
+
+    it("should return a time entry by id with GET to /time_entries/<id>",function() {
+      var req = client.timeEntries.show(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      });
+    });
   });
 
   describe("#timeEntryCategories", function() {
 
     nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
       .get('/time_entry_categories')
-      .reply(200);
+      .reply(200,{data:[],paging:{}});
 
     it("should be initialised on the client",function(done) {
       expect(client.timeEntryCategories).to.be.an.instanceof(TimeEntryCategories);
@@ -370,6 +413,13 @@ describe('Client Resources', function() {
       done();
     });
 
-    it("should do something");
+    it("should return time entries with a GET to /time_entry_categories",function() {
+      var req = client.timeEntryCategories.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.have.property('data').that.is.an('array');
+        expect(res.body).to.have.property('paging').that.is.an('object');
+      });
+    });
   });
-})
+});

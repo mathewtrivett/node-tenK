@@ -14,11 +14,20 @@ class TimeEntries extends Base {
   }
 
   all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/time_entries`,options);
+    if (arguments.length <=1) {
+      return this.get(`${this.resourceType}time_entries`,options);
+    } else {
+      return this.get(`${this.resourceType}${resourceId}/time_entries`,options);
+    }
   }
 
   show(resourceId,timeEntryId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`,options);
+    if (arguments.length <=2) {
+      options = timeEntryId;
+      return this.get(`${this.resourceType}time_entries/${resourceId}`,options);
+    } else {
+      return this.get(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`,options);
+    }
   }
 
   update(resourceId,timeEntryID,options={}) {
@@ -35,6 +44,10 @@ class TimeEntryCategories extends Base {
   constructor(resourceType,client) {
     super(client);
     this.resourceType = resourceType;
+  }
+
+  all(options={}) {
+    return this.get(`${this.resourceType}time_entry_categories`,options);
   }
 }
 

@@ -13,16 +13,16 @@ class Placeholders extends Base {
     return this.get(`placeholder_resources/${placeholderResourceId}`, options);
   }
 
-  create(options = {}) {
+  create(options={}) {
     return this.post(`placeholder_resources`,options);
   }
 
   update(placeholderResourceId, options={}) {
-    return this.put(`placeholder_resources`,options);
+    return this.put(`placeholder_resources/${placeholderResourceId}`,options);
   }
 
   remove(placeholderResourceId) {
-    return this.delete(`placeholder_resources/${placeholderResourceId}`,options);
+    return this.delete(`placeholder_resources/${placeholderResourceId}`);
   }
 
 }
