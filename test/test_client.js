@@ -15,7 +15,6 @@ var { BillRates } = require('../src/resources/BillRates.js');
 var { BudgetItems } = require('../src/resources/BudgetItems.js');
 var { ExpenseItemCategories } = require('../src/resources/ExpenseItems.js');
 
-
 describe('Client',function() {
   describe('#initWithToken', function() {
     // Given we have a API Key
@@ -325,46 +324,52 @@ describe('Client Resources', function() {
       .reply(200)
       .delete(/placeholders\/\d+$/)
       .reply(200)
-    // ideal list call client.placeholders.all()
-    // ideal show call client.placeholders.show(4)
-    // ideal create call client.placeholders.create({title:""})
-    // ideal update call client.placeholders.update(4,{title:"newtitle"})
-    // ideal delete call client.placeholders.remove(4)
+
     it("should be initialised on the client",function(done) {
       expect(client.placeholders).to.be.an.instanceof(Placeholders);
       expect(client.placeholders.client).to.deep.equal(client);
       done();
     });
 
-    it('should return placeholders with GET to /placeholders');
+    it('should return placeholders with GET to /placeholders'); // ideal list call client.placeholders.all()
 
-    it('should return a placeholder by id with GET to /placeholders/<id>');
+    it('should return a placeholder by id with GET to /placeholders/<id>'); // ideal show call client.placeholders.show(4)
 
-    it('should create a placeholder with valid POST to /placeholders');
+    it('should create a placeholder with valid POST to /placeholders'); // ideal create call client.placeholders.create({title:""})
 
-    it('should update a placeholder by id with PUT to /placeholders/<id>');
-    
-    it('should delete a placeholder by id with DELETE to /placeholders/<id>');
+    it('should update a placeholder by id with PUT to /placeholders/<id>'); // ideal update call client.placeholders.update(4,{title:"newtitle"})
+
+    it('should delete a placeholder by id with DELETE to /placeholders/<id>'); // ideal delete call client.placeholders.remove(4)
   });
 
   describe("#timeEntries", function() {
-    // ideal list call client.timeEntries.all()
-    // ideal show call client.timeEntries.show(4)
-    // expect other methods to fail
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get('/time_entries')
+      .reply(200)
+      .get(/timeEntries\/\d+$/)
+      .reply(200);
+
     it("should be initialised on the client",function(done) {
       expect(client.timeEntries).to.be.an.instanceof(TimeEntries);
       expect(client.timeEntries.client).to.deep.equal(client);
       done();
     });
+
     it("should do something");
   });
 
   describe("#timeEntryCategories", function() {
+
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get('/time_entry_categories')
+      .reply(200);
+
     it("should be initialised on the client",function(done) {
       expect(client.timeEntryCategories).to.be.an.instanceof(TimeEntryCategories);
       expect(client.timeEntryCategories.client).to.deep.equal(client);
       done();
     });
+
     it("should do something");
   });
 })

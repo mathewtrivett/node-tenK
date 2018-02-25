@@ -5,12 +5,10 @@ var TenK = require('../index.js');
 describe('Users', function() {
     // fake server call pattern: server.respondWith(method, url, response);
     var API_BASE = 'https://vnext-api.10000ft.com/api/v1/';
-    var users = require('./data/users.json');
     var client = new TenK('test-token');
 
     describe('#all', function() {
       // GIVEN
-      // var server = sinon.createFakeServer();
       it('should do something');
       // WHEN
       // THEN
