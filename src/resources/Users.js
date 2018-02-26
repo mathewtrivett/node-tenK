@@ -14,7 +14,7 @@ class Users extends Base {
     this.resourceType = resourceType;
     this.assignments = new Assignments('users/',client);
     this.availability = new Availabilities('users/',client);
-    this.expenseEntries = new ExpenseItems(client);
+    this.expenseEntries = new ExpenseItems('users/',client);
     this.tags = new Tags(`users/`,client);
     this.timeEntries = new TimeEntries(`users/`,client);
   }

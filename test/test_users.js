@@ -225,10 +225,60 @@ describe("User resources",function() {
         expect(res.statusCode).to.equal(200);
       });
     });
+
+    it('should create an availability for a given user with a valid POST to /users/<id>/availabilities', function() {
+      var req = client.users.availability.create(5,{});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+      });
+    });
+
+    it('should delete an availability for a given user and id with DELETE to /users/<id>/availabilities/<id>',function() {
+      var req = client.users.availability.remove(5,100);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#expenseEntries",function() {
-    it("should do something");
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get(/users\/\d+\/expense_items/)
+      .reply(200)
+      .get(/users\/\d+\/expense_items\/\d+$/)
+      .reply(200)
+      .post(/users\/\d+\/expense_items/)
+      .reply(201)
+      .delete(/users\/\d+\/expense_items\/\d+$/)
+      .reply(200)
+
+    it("should return the expense entries for a given user with GET to /users/<id>/expense_items",function() {
+      var req = client.users.expenseEntries.all(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it("should return the expense entry for a given user with GET to /users/<id>/expense_items/<id>",function() {
+      var req = client.users.expenseEntries.show(4,20000);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it("should create an expense entry with a valid POST to /users/<id>/expense_items",function() {
+      var req = client.users.expenseEntries.create(4,{});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+      });
+    });
+
+    it("should delete an expense entry with a DELETE to /users/<id>/expense_items/<id>", function() {
+      var req = client.users.expenseEntries.remove(4,20000);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#tags",function() {

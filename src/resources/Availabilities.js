@@ -14,8 +14,16 @@ class Availabilities extends Base {
     return this.get(`${this.resourceType}${resourceId}/availabilities/${availabilityId}`,options);
   }
 
+  create(resourceId,options={}) {
+    return this.post(`${this.resourceType}${resourceId}/availabilities`,options);
+  }
+
   update(resourceId,availabilityId,options={}) {
     return this.put(`${this.resourceType}${resourceId}/availabilities/${availabilityId}`,options);
+  }
+
+  remove(resourceId,availabilityId) {
+    return this.delete(`${this.resourceType}${resourceId}/availabilities/${availabilityId}`);
   }
 };
 

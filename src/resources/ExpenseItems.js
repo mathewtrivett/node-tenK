@@ -10,26 +10,25 @@ class ExpenseItems extends Base {
     return this.get(`${this.resourceType}${resourceId}/expense_items`, options);
   }
 
-  show(resourceId, options={}) {
-    return this.get(`${this.resourceType}${resourceId}/expense_items`, options);
+  show(resourceId, expenseEntryId, options={}) {
+    return this.get(`${this.resourceType}${resourceId}/expense_items/${expenseEntryId}`, options);
   }
 
   create(resourceId, options={}) {
     return this.post(`${this.resourceType}${resourceId}/expense_items`,options);
   }
 
-  update(resourceId, budgetItemId, options) {
+  update(resourceId, expenseEntryId, options) {
     if (arguments.length === 2) {
-      return this.put(`${this.resourceType}/expense_items/${budgetItemId}`,options);
+      return this.put(`${this.resourceType}/expense_items/${expenseEntryId}`,options);
     } else {
-      return this.put(`${this.resourceType}${resourceId}/expense_items/${budgetItemId}`,options);
+      return this.put(`${this.resourceType}${resourceId}/expense_items/${expenseEntryId}`,options);
     }
   }
 
-  delete(budgetItemId) {
-    return this.delete(`${this.resourceType}/budgetItems/${budgetItemId}`);
+  remove(resourceId,expenseEntryId) {
+    return this.delete(`${this.resourceType}${resourceId}/expense_items/${expenseEntryId}`);
   }
-
 }
 
 class ExpenseItemCategories extends Base {
