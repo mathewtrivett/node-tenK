@@ -168,7 +168,7 @@ describe("User resources",function() {
       });
     });
 
-    it("should show an assignment for a given user",function() {
+    it("should show the given assignment for a given user",function() {
       var req = client.users.assignments.show(4,1);
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
@@ -177,14 +177,14 @@ describe("User resources",function() {
       });
     });
 
-    it("should create an assignment for a user",function() {
-      var req = client.users.assignments.create(4);
+    it("should create an assignment for a given user",function() {
+      var req = client.users.assignments.create(5);
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
-    it("should delete an assignment for a user", function() {
+    it("should delete the given assignment for a given user", function() {
       var req = client.users.assignments.remove(4,1);
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
@@ -193,7 +193,38 @@ describe("User resources",function() {
   });
 
   describe("#availability",function() {
-    it("should do something");
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get(/users\/\d+\/availabilities$/)
+      .reply(200)
+      .get(/users\/\d+\/availabilities\/\d+$/)
+      .reply(200)
+      .put(/users\/\d+\/availabilities\/\d+$/)
+      .reply(200)
+      .post(/users\/\d+\/availabilities$/)
+      .reply(201)
+      .delete(/users\/\d+\/availabilities\/\d+$/)
+      .reply(200)
+
+    it("should return the availability of a given user with a GET to /users/<id>/availabilities", function() {
+      var req = client.users.availability.all(101);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should get a given availability of a given user with GET to /users/<id>/availabilities/<id>',function() {
+      var req = client.users.availability.show(5,101);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should update an availability for a given user with a valid PUT to /users/<id>/availabilities/<id>',function() {
+      var req = client.users.availability.update(5,101,{});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#expenseEntries",function() {
