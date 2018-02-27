@@ -14,27 +14,31 @@ class TimeEntries extends Base {
   }
 
   all(resourceId,options={}) {
-    if (arguments.length <=1) {
-      return this.get(`${this.resourceType}time_entries`,options);
-    } else {
+    if(['projects/','users/'].includes(this.resourceType)) {
       return this.get(`${this.resourceType}${resourceId}/time_entries`,options);
+    } else {
+      return this.get(`${this.resourceType}time_entries`,options);
     }
   }
 
   show(resourceId,timeEntryId,options={}) {
-    if (arguments.length <=2) {
+    if(['projects/','users/'].includes(this.resourceType)) {
+      return this.get(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`,options);
+    } else {
       options = timeEntryId;
       return this.get(`${this.resourceType}time_entries/${resourceId}`,options);
-    } else {
-      return this.get(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`,options);
     }
   }
 
-  update(resourceId,timeEntryID,options={}) {
+  create(resourceId,options={}) {
+    return this.post(`${this.resourceType}${resourceId}/time_entries/`,options);
+  }
+
+  update(resourceId,timeEntryId,options={}) {
     return this.put(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`,options);
   }
 
-  remove(resourceId,timeEntryID) {
+  remove(resourceId,timeEntryId) {
     return this.delete(`${this.resourceType}${resourceId}/time_entries/${timeEntryId}`);
   }
 }

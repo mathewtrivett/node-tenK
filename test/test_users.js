@@ -282,11 +282,83 @@ describe("User resources",function() {
   });
 
   describe("#tags",function() {
-    it("should do something");
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get(/users\/\d+\/tags/)
+      .reply(200)
+      .post(/users\/\d+\/tags/)
+      .reply(201)
+      .delete(/users\/\d+\/tags\/\d+/)
+      .reply(200)
+
+    it("should show a list of tags for a given user with GET to /users/<id>/tags",function() {
+      var req = client.users.tags.all(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should create a tag for a user with a valid POST to /users/<id>/tags',function() {
+      var req = client.users.tags.create(4,{});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+      });
+    });
+
+    it('should delete a tag for a user with a valid DELETE to /users/<id>/tags/<id>', function() {
+      var req = client.users.tags.remove(4,2000);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#timeEntries",function() {
-    it("should do something");
+    nock(API_BASE)
+      .get(/users\/\d+\/time_entries/)
+      .reply(200)
+      .get(/users\/\d+\/time_entries\/\d+/)
+      .reply(200)
+      .post(/users\/\d+\/time_entries/)
+      .reply(201)
+      .put(/users\/\d+\/time_entries\/\d+/)
+      .reply(200)
+      .delete(/users\/\d+\/time_entries\/\d+/)
+      .reply(200)
+
+    it("should list all time entries for a user with a valid GET to /users/<id>/time_entries",function() {
+      var req = client.users.timeEntries.all(4);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should get a given time entry for a user with a GET to /users/<id>/time_entries/<id>',function() {
+      var req = client.users.timeEntries.show(4,101);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should create a time Entry for a user with a valid POST to /users/<id>/time_entries',function() {
+      var req = client.users.timeEntries.create(4,{});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(201);
+      });
+    });
+
+    it('should update a time entry for a user with a valid PUT to /users/<id>/time_entries/<id>',function() {
+      var req = client.users.timeEntries.update(4,101,{});
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
+
+    it('should delete a given time entry for a given user with DELETE to /users/<id>/time_entries/<id>', function() {
+      var req = client.users.timeEntries.remove(4,101);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
 });
