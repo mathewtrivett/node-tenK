@@ -44,7 +44,7 @@ class Projects extends Base {
     return this.put(`projects/${options.projectId}`, options.options);
   }
 
-  remove(options) {
+  remove(options={}) {
     return this.delete(`projects/${options.projectId}`);
   }
 }

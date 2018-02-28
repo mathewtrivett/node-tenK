@@ -1,25 +1,40 @@
 var { Base } = require('./Base.js');
 
 class Assignments extends Base {
-  constructor(resourceType,...args) {
-    super(...args);
+  constructor(resourceType, client) {
+    super(client);
     this.resourceType = resourceType;
   }
 
-  all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/assignments`,options);
+  all(options={}) {
+    if(!options.options) options.options = {};
+    if(!options.projectId) options.projectId = '';
+    if(!options.userId) options.userId = '';
+
+    return this.get(`${this.resourceType}${options.projectId}${options.userId}/assignments`, options.options);
   }
 
-  show(resourceId,assignmentId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/assignments/${assignmentId}`,options);
+  show(options={}) {
+    if(!options.options) options.options = {};
+    if(!options.projectId) options.projectId = '';
+    if(!options.userId) options.userId = '';
+
+    return this.get(`${this.resourceType}${options.projectId}${options.userId}/assignments/${options.assignmentId}`,options.options);
   }
 
-  create(resourceId,options={}) {
-    return this.post(`${this.resourceType}${resourceId}/assignments`,options);
+  create(options={}) {
+    if(!options.options) options.options = {};
+    if(!options.projectId) options.projectId = '';
+    if(!options.userId) options.userId = '';
+
+    return this.post(`${this.resourceType}${options.projectId}${options.userId}/assignments`,options.options);
   }
 
-  remove(resourceId,assignmentId) {
-    return this.delete(`${this.resourceType}${resourceId}/assignments/${assignmentId}`);
+  remove(options={}) {
+    if(!options.projectId) options.projectId = '';
+    if(!options.userId) options.userId = '';
+
+    return this.delete(`${this.resourceType}${options.projectId}${options.userId}/assignments/${options.assignmentId}`);
   }
 }
 

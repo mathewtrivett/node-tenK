@@ -160,7 +160,7 @@ describe("User resources",function() {
       .reply(200)
 
     it("should list assignments for a given user", function() {
-      var req = client.users.assignments.all(4);
+      var req = client.users.assignments.all({ userId: 4 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data').that.is.an('array');
@@ -169,7 +169,7 @@ describe("User resources",function() {
     });
 
     it("should show the given assignment for a given user",function() {
-      var req = client.users.assignments.show(4,1);
+      var req = client.users.assignments.show({ userId:4, assignmentId: 1 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data').that.is.an('array');
@@ -178,14 +178,14 @@ describe("User resources",function() {
     });
 
     it("should create an assignment for a given user",function() {
-      var req = client.users.assignments.create(5);
+      var req = client.users.assignments.create({ projectId:5, options:{} });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
     it("should delete the given assignment for a given user", function() {
-      var req = client.users.assignments.remove(4,1);
+      var req = client.users.assignments.remove({ userId:4, assignmentId:1 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });

@@ -78,16 +78,14 @@ describe('Projects', function() {
         .reply(200)
 
       it('should list all the assignments for a given project with GET to /projects/<id>/assignments',function() {
-        // object_literal { projectId:101 }
-        var req = client.projects.assignments.all(101);
+        var req = client.projects.assignments.all({ projectId: 101 });
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
       });
 
       it('should get a specific assignment for a given project with GET to /projects/<id>/assignments/<id>',function() {
-        // object_literal { projectId:101, assignmentId: 101 }
-        var req = client.projects.assignments.show(101,1);
+        var req = client.projects.assignments.show({ projectId:101, assignmentId: 1 });
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
