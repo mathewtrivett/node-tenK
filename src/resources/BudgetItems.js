@@ -7,20 +7,21 @@ class BudgetItems extends Base {
   }
 
   all(resourceId, options={}) {
-    if(arguments.length <= 1) {
+    if(['projects/'].includes(this.resourceType)) {
+      return this.get(`${this.resourceType}${resourceId}/budget_items`, options);
+    } else {
       options = resourceId;
       return this.get(`${this.resourceType}budget_items`, options);
-    } else {
-      return this.get(`${this.resourceType}${resourceId}/budget_items`, options);
     }
   }
 
   show(resourceId, budgetItemId, options) {
-    if(arguments.length <= 2) {
+    if(['projects/'].includes(this.resourceType)) {
+      return this.get(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`, options);
+    } else {
       options = budgetItemId
       return this.get(`${this.resourceType}budget_items/${resourceId}`, options);
     }
-    return this.get(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`, options);
   }
 
   create(resourceId, options={}) {
@@ -28,11 +29,11 @@ class BudgetItems extends Base {
   }
 
   update(resourceId, budgetItemId, options) {
-    if (arguments.length <= 2) {
+    if(['projects/'].includes(this.resourceType)) {
+      return this.put(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`,options);
+    } else {
       options = budgetItemId
       return this.put(`${this.resourceType}budget_items/${resourceId}`,options);
-    } else {
-      return this.put(`${this.resourceType}${resourceId}/budget_items/${budgetItemId}`,options);
     }
   }
 

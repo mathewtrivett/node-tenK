@@ -37,8 +37,12 @@ class ExpenseItemCategories extends Base {
     this.resourceType = resourceType;
   }
 
-  all(options={}) {
-    return this.get(`${this.resourceType}expense_item_categories`,options);
+  all(resourceId, options={}) {
+    if(['projects/'].includes(this.resourceType)) {
+      return this.get(`${this.resourceType}${resourceId}/expense_item_categories`,options);
+    } else {
+      return this.get(`${this.resourceType}expense_item_categories`,options);
+    }
   }
 }
 
