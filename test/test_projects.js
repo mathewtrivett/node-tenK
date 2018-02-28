@@ -4,10 +4,11 @@ var nock = require('nock');
 
 const API_BASE = 'https://vnext-api.10000ft.com/api/v1';
 const client = new TenK('test-token');
+const HEADERS = { reqheaders:{ 'auth':'test-token'} };
 
 describe('Projects', function() {
 
-    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+    nock(API_BASE, HEADERS)
       .get('/projects')
       .reply(200)
       .get(/projects\/\d+$/)
@@ -68,10 +69,8 @@ describe('Projects', function() {
 
   describe('Project resources', function() {
 
-    var API_BASE = 'https://vnext-api.10000ft.com/api/v1/';
-
     describe("#assignments",function() {
-      nock(API_BASE,{ reqheaders:{ 'auth':'test-token'} })
+      nock(API_BASE, HEADERS)
         .get(/projects\/\d+\/assignments/)
         .reply(200)
         .get(/projects\/\d+\/assignments\/\d+$/)
@@ -93,7 +92,52 @@ describe('Projects', function() {
     });
 
     describe("#billRates", function() {
-      it("should do something");
+      nock(API_BASE, HEADERS)
+        .get(/projects\/\d+\/bill_rates$/)
+        .reply(200)
+        .get(/projects\/\d+\/bill_rates\/\d+$/)
+        .reply(200)
+        .put(/projects\/\d+\/bill_rates\/\d+$/)
+        .reply(200)
+        .post(/projects\/\d+\/bill_rates$/)
+        .reply(201)
+        .delete(/projects\/\d+\/bill_rates\/\d+$/)
+        .reply(200)
+
+      it('should list all the bill rates for a given project with GET to /projects/<id>/bill_rates',function() {
+        var req = client.projects.billRates.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should show a specific bill rate for a given project with GET to /projects/<id>/bill_rates/<id>',function() {
+        var req = client.projects.billRates.show(4,201);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should update a bill rate with a PUT and valid data to /projects/<id>/bill_rates/<id>',function() {
+        var req = client.projects.billRates.update(4,201,{});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should create a bill rate with a POST and valid data to /projects/<id>/bill_rates',function() {
+        var req = client.projects.billRates.create(4,{});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(201);
+        });
+      });
+
+      it('should remove a bill rate with a DELETE to /projects/<id>/bill_rates/<id>',function() {
+        var req = client.projects.billRates.remove(4,201);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
     });
 
     describe('#budgetItems', function() {
