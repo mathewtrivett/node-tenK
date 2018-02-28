@@ -375,6 +375,20 @@ describe('Client Resources', function() {
       .reply(200)
       .get(/roles\/\d+$/)
       .reply(200);
+
+    it('should list all the roles on account with GET to /roles',function() {
+      var req = client.roles.all();
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      })
+    });
+
+    it('should list an individual role on with a GET to /roles/<id>',function() {
+      var req = client.roles.show(808);
+      return req.then(function(res) {
+        expect(res.statusCode).to.equal(200);
+      });
+    });
   });
 
   describe("#timeEntries", function() {

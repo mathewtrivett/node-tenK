@@ -213,12 +213,7 @@ describe('Projects', function() {
         });
       });
 
-      it('should update a expense item with a valid PUT to /projects/<id>/users/<id>/expense_items/<id>', function() {
-        var req = client.projects.users.expenseEntries.update(4,20,40,{});
-        return req.then(function(res) {
-          expect(res.statusCode).to.equal(200);
-        });
-      });
+      it('should update a expense item with a valid PUT to /projects/<id>/users/<id>/expense_items/<id>');
     });
 
     describe('#expenseItemCategories',function(){

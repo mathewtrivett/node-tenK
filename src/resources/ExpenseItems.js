@@ -18,12 +18,13 @@ class ExpenseItems extends Base {
     return this.post(`${this.resourceType}${resourceId}/expense_items`,options);
   }
 
-  update(resourceId, expenseEntryId, options) {
-    if (arguments.length === 2) {
-      return this.put(`${this.resourceType}/expense_items/${expenseEntryId}`,options);
-    } else {
-      return this.put(`${this.resourceType}${resourceId}/expense_items/${expenseEntryId}`,options);
-    }
+  update(options) {
+    if(!options.expenseEntryId) options.expenseEntryId = '';
+    if(!options.resourceId) options.projectId = '';
+    if(!options.userId) options.userId = '';
+    if(!options.options) options.options = {}
+
+    return this.put(`${this.resourceType}${options.resourceId}/users/${options.userId}/expense_items/${options.expenseEntryId}`, options.options);
   }
 
   remove(resourceId,expenseEntryId) {
