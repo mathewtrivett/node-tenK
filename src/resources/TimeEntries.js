@@ -31,7 +31,7 @@ class TimeEntries extends Base {
   }
 
   create(resourceId,options={}) {
-    return this.post(`${this.resourceType}${resourceId}/time_entries/`,options);
+    return this.post(`${this.resourceType}${resourceId}/time_entries`,options);
   }
 
   update(resourceId,timeEntryId,options={}) {
@@ -50,8 +50,12 @@ class TimeEntryCategories extends Base {
     this.resourceType = resourceType;
   }
 
-  all(options={}) {
-    return this.get(`${this.resourceType}time_entry_categories`,options);
+  all(resourceId, options={}) {
+    if(['projects/'].includes(this.resourceType)) {
+      return this.get(`${this.resourceType}${resourceId}/time_entry_categories`,options);
+    } else {
+      return this.get(`${this.resourceType}time_entry_categories`,options);
+    }
   }
 }
 

@@ -5,7 +5,7 @@ var { TimeEntries, TimeEntryCategories } = require('./TimeEntries.js');
 var { Tags } = require('./Tags.js');
 var { Phases } = require('./Phases.js');
 var { BudgetItems} = require('./BudgetItems.js');
-var { ExpenseItemCategories } = require('./ExpenseItems.js');
+var { ExpenseItems, ExpenseItemCategories } = require('./ExpenseItems.js');
 var { Users } = require('./Users.js');
 
 /**
@@ -17,6 +17,7 @@ class Projects extends Base {
     this.assignments = new Assignments(`projects/`,client);
     this.billRates = new BillRates(`projects/`, client);
     this.budgetItems = new BudgetItems(`projects/`,client);
+    this.expenseItems = new ExpenseItems(`projects/`,client);
     this.expenseItemCategories = new ExpenseItemCategories(`projects/`, client);
     this.phases = new Phases(`projects/`,client);
     this.tags = new Tags(`projects/`,client);

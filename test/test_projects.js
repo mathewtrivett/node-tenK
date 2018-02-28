@@ -190,6 +190,37 @@ describe('Projects', function() {
       });
     });
 
+    describe('#expenseItems',function() {
+      nock(API_BASE,HEADERS)
+      .get(/projects\/\d+\/expense_items$/)
+      .reply(200)
+      .get(/projects\/\d+\/expense_items\/\d+$/)
+      .reply(200)
+      .put(/projects\/\d+\/users\/\d+\/expense_items\/\d+$/)
+      .reply(200);
+
+      it('should return all the expense items for a given project with GET to /projects/<id>/expense_items',function() {
+        var req = client.projects.expenseItems.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should return a specific expense item with a GET to /projects/<id>/expense_items/<id>',function(){
+        var req = client.projects.expenseItems.show(4,10000001);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should update a expense item with a valid PUT to /projects/<id>/users/<id>/expense_items/<id>', function() {
+        var req = client.projects.users.expenseEntries.update(4,20,40,{});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+    });
+
     describe('#expenseItemCategories',function(){
       nock(API_BASE,HEADERS)
         .get(/projects\/\d+\/expense_item_categories$/)
@@ -212,13 +243,32 @@ describe('Projects', function() {
           return _.isEqual(Object.getOwnPropertyNames(body).sort(),requiredProps.sort());
         })
         .reply(201)
-        .put(/projects\/\d+\/phases$/,function(body) {
+        .put(/projects\/\d+\/phases\/\d+$/,function(body) {
           var requiredProps = ['phase_name','starts_at','ends_at'];
           return _.intersection(requiredProps,Object.getOwnPropertyNames(body)).length > 0;
         })
         .reply(200)
 
-      it("should do something");
+      it('should get all phases for a given project with GET to /projects/<id>/phases',function() {
+        var req = client.projects.phases.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should create a phase with a valid POST to /projects/<id>/phases',function() {
+        var req = client.projects.phases.create(4,{phase_name:'New phase',starts_at: '2018-02-28', ends_at: '2018-03-02'});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(201);
+        });
+      });
+
+      it('should update a phase with a valid PUT to /projects/<id>/phases/<id>',function() {
+        var req = client.projects.phases.update(4,5,{ends_at:'2018-03-05'});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
     });
 
     describe('#tags', function() {
@@ -232,20 +282,60 @@ describe('Projects', function() {
         .delete(/projects\/\d+\/tags\/\d+$/)
         .reply(200)
 
-      it("should do something");
+      it('should return all the project tags with a GET to /projects/<id>/tags',function() {
+        var req = client.projects.tags.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should create a new project tag with a valid POST to /projects/<id>/tags',function() {
+        var req = client.projects.tags.create(4,{value:'TDD'});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(201);
+        });
+      });
+
+      it('should delete a project tag with a DELETE to /projects/<id>/tags/<id>',function() {
+        var req = client.projects.tags.remove(4,1001);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
     });
 
     describe("#timeEntries",function() {
       nock(API_BASE,HEADERS)
       .get(/projects\/\d+\/time_entries$/)
       .reply(200)
-      .get(/projects\/\d+\/tags\/\d+$/)
+      .get(/projects\/\d+\/time_entries\/\d+$/)
       .reply(200)
-      .post(/projects\/\d+\/tags\/\d+$/)
-      .reply(200)
+      .post(/projects\/\d+\/time_entries$/,function(body) {
+        var requiredProps = ['user_id','assignable_id','date','hours'];
+        return _.isEqual(requiredProps.sort(),Object.getOwnPropertyNames(body).sort());
+      })
+      .reply(201)
 
+      it('should get all the time entries for a given project with GET to /projects/<id>/time_entries',function() {
+        var req = client.projects.timeEntries.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
 
-      it("should do something");
+      it('should get a specific time entry for a given project with GET to /projects/<id>/time_entries/<id>',function() {
+        var req = client.projects.timeEntries.show(4,101);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
+
+      it('should create a new time entry with a valid POST to /projects/<id>/time_entries',function() {
+        var req = client.projects.timeEntries.create(4, {user_id:200, assignable_id:4, date: '2018-02-28',hours: 0.5});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(201);
+        });
+      });
     });
 
     describe("#timeEntryCategories",function() {
@@ -253,14 +343,24 @@ describe('Projects', function() {
       .get(/projects\/\d+\/time_entry_categories$/)
       .reply(200)
 
-      it("should do something");
+      it('should return all the time entry categories for a given project',function() {
+        var req = client.projects.timeEntryCategories.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
     });
 
     describe('#users', function() {
       nock(API_BASE,HEADERS)
       .get(/projects\/\d+\/users$/)
       .reply(200)
-      
-      it("should do something");
+
+      it('should fetch all the users for a project with a GET to /projects/<id>/users',function() {
+        var req = client.projects.users.all(4);
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        })
+      });
     });
 });

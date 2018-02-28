@@ -20,10 +20,10 @@ class Users extends Base {
   }
 
   all(resourceId,options={}) {
-    if(arguments.length <=1) {
-      return this.get(`${this.resourceType}users`,options);
-    } else {
+    if(['projects/'].includes(this.resourceType)) {
       return this.get(`${this.resourceType}${resourceId}/users`,options);
+    } else {
+      return this.get(`${this.resourceType}users`,options);
     }
   }
 

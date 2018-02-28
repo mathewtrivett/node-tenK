@@ -1,8 +1,8 @@
 var { Base } = require('./Base.js');
 
 class ExpenseItems extends Base {
-  constructor(resourceType,...args) {
-    super(...args);
+  constructor(resourceType,client) {
+    super(client);
     this.resourceType = resourceType;
   }
 

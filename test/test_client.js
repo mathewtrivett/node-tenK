@@ -369,6 +369,14 @@ describe('Client Resources', function() {
     });
   });
 
+  describe("#roles",function() {
+    nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
+      .get(/roles/)
+      .reply(200)
+      .get(/roles\/\d+$/)
+      .reply(200);
+  });
+
   describe("#timeEntries", function() {
     nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
       .get('/time_entries')
