@@ -1,7 +1,7 @@
 var { Base } = require('./Base.js');
 
 /**
-TimeEntries can be requested from the API's Base, from Projects or Users.
+TimeEntries can be requested from the API's Base, Projects or Users.
 
 @param {string} resourceType - A slug for the resource type on init. `` = API_BASE, `users/` = Users and `projects/` = Projects.
 @param {...args} args -

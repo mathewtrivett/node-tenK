@@ -3,8 +3,8 @@ var nock = require('nock');
 var TenK = require('../index.js');
 var _ = require('underscore');
 
-var API_BASE = 'https://vnext-api.10000ft.com/api/v1/';
-var client = new TenK('test-token');
+const API_BASE = 'https://vnext-api.10000ft.com/api/v1';
+const client = new TenK('test-token');
 
 describe('Users', function() {
     // fake server call pattern: server.respondWith(method, url, response);
