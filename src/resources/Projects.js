@@ -30,20 +30,22 @@ class Projects extends Base {
     return this.get('projects',options);
   }
 
-  show(projectId,options={}) {
-    return this.get(`projects/${projectId}`, options);
+  show(options={}) {
+    if(!options.options) options.options = {};
+    return this.get(`projects/${options.projectId}`, options.options);
   }
 
   create(options={}) {
     return this.post('projects', options);
   }
 
-  update(projectId,options={}) {
-    return this.put(`projects/${projectId}`, options);
+  update(options={}) {
+    if(!options.options) options.options = {};
+    return this.put(`projects/${options.projectId}`, options.options);
   }
 
-  remove(projectId) {
-    return this.delete(`projects/${projectId}`);
+  remove(options) {
+    return this.delete(`projects/${options.projectId}`);
   }
 }
 

@@ -32,7 +32,7 @@ describe('Projects', function() {
 
     describe('#show',function() {
       it('should return project with the given id with a GET to /projects/<id>', function() {
-        var req = client.projects.show(202);
+        var req = client.projects.show({ projectId:202 });
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -41,7 +41,7 @@ describe('Projects', function() {
 
     describe('#update',function() {
       it('should update the project with the given id with a PUT to /projects/<id>',function() {
-        var req = client.projects.update(202,{});
+        var req = client.projects.update({ projectId: 202, options: {} });
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -59,7 +59,7 @@ describe('Projects', function() {
 
     describe('#remove', function() {
       it('should remove a project by id with DELETE to /projects/<id>', function() {
-        var req = client.projects.remove(202);
+        var req = client.projects.remove({ projectId:202 });
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -78,6 +78,7 @@ describe('Projects', function() {
         .reply(200)
 
       it('should list all the assignments for a given project with GET to /projects/<id>/assignments',function() {
+        // object_literal { projectId:101 }
         var req = client.projects.assignments.all(101);
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -85,6 +86,7 @@ describe('Projects', function() {
       });
 
       it('should get a specific assignment for a given project with GET to /projects/<id>/assignments/<id>',function() {
+        // object_literal { projectId:101, assignmentId: 101 }
         var req = client.projects.assignments.show(101,1);
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -106,6 +108,7 @@ describe('Projects', function() {
         .reply(200)
 
       it('should list all the bill rates for a given project with GET to /projects/<id>/bill_rates',function() {
+        // object_literal { projectId:4 }
         var req = client.projects.billRates.all(4);
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -113,6 +116,7 @@ describe('Projects', function() {
       });
 
       it('should show a specific bill rate for a given project with GET to /projects/<id>/bill_rates/<id>',function() {
+        // object_literal { projectId:4, billRatesId: 201 }
         var req = client.projects.billRates.show(4,201);
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -120,6 +124,7 @@ describe('Projects', function() {
       });
 
       it('should update a bill rate with a PUT and valid data to /projects/<id>/bill_rates/<id>',function() {
+        // object_literal { projectId:4, billRatesId: 201, options: {} }
         var req = client.projects.billRates.update(4,201,{});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -127,6 +132,7 @@ describe('Projects', function() {
       });
 
       it('should create a bill rate with a POST and valid data to /projects/<id>/bill_rates',function() {
+        // object_literal { projectId:4, options: {} }
         var req = client.projects.billRates.create(4,{});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
@@ -134,6 +140,7 @@ describe('Projects', function() {
       });
 
       it('should remove a bill rate with a DELETE to /projects/<id>/bill_rates/<id>',function() {
+        // object_literal { projectId:4, billRateId: 201 }
         var req = client.projects.billRates.remove(4,201);
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -162,6 +169,7 @@ describe('Projects', function() {
         .reply(200)
 
       it('it should get all the budget items of a certain type with a GET to /projects/<id>/budget_items',function() {
+        // object_literal { projectId:4, options: { item_type: 'TimeFees' } }
         var req = client.projects.budgetItems.all(4,{item_type:'TimeFees'});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -169,6 +177,7 @@ describe('Projects', function() {
       });
 
       it('should return a specific budget item for a given project with GET to /projects/<id>/budget_items/<id>',function() {
+        // object_literal { projectId:4, budgetItemId:201 }
         var req = client.projects.budgetItems.show(4,201);
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
@@ -176,6 +185,7 @@ describe('Projects', function() {
       });
 
       it('should create a budget item with a POST and valid data to /projects/<id>/budget_items',function() {
+        // object_literal { projectId:4, options:{ item_type: 'Expenses', amount:300} }
         var req = client.projects.budgetItems.create(4,{item_type: 'Expenses', amount: 400.00});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
@@ -183,6 +193,7 @@ describe('Projects', function() {
       });
 
       it('should update a budget item with a PUT and valid data to /projects/<id>/budget_items',function() {
+        // object_literal { projectId:4, budgetItemId:2002, options:{amount:300} }
         var req = client.projects.budgetItems.update(4,2002,{amount:300});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
