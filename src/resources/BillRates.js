@@ -6,28 +6,28 @@ class BillRates extends Base {
     this.resourceType = resourceType;
   }
 
-  all(resourceId,options={}) {
-    if(['projects/'].includes(this.resourceType)) {
-      return this.get(`${this.resourceType}${resourceId}/bill_rates`,options);
-    } else {
+  all({projectId='',options={}}={}) {
+    if(this.resourceType !== 'projects/') {
       return this.get(`${this.resourceType}bill_rates`,options);
+    } else {
+      return this.get(`${this.resourceType}${projectId}/bill_rates`,options);
     }
   }
 
-  show(resourceId,billRateId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/bill_rates/${billRateId}`,options);
+  show({projectId='',billRateId='',options={}}={}) {
+    return this.get(`${this.resourceType}${projectId}/bill_rates/${billRateId}`,options);
   }
 
-  create(resourceId,options={}) {
-    return this.post(`${this.resourceType}${resourceId}/bill_rates`,options);
+  create({projectId='',options={}}={}) {
+    return this.post(`${this.resourceType}${projectId}/bill_rates`,options);
   }
 
-  update(resourceId,billRateId,options={}) {
-    return this.put(`${this.resourceType}${resourceId}/bill_rates/${billRateId}`,options);
+  update({projectId='',billRateId='',options={}}={}) {
+    return this.put(`${this.resourceType}${projectId}/bill_rates/${billRateId}`,options);
   }
 
-  remove(resourceId,billRateId) {
-    return this.delete(`${this.resourceType}${resourceId}/bill_rates/${billRateId}`);
+  remove({projectId='',billRateId=''}) {
+    return this.delete(`${this.resourceType}${projectId}/bill_rates/${billRateId}`);
   }
 }
 

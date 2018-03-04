@@ -107,7 +107,7 @@ describe('Projects', function() {
 
       it('should list all the bill rates for a given project with GET to /projects/<id>/bill_rates',function() {
         // object_literal { projectId:4 }
-        var req = client.projects.billRates.all(4);
+        var req = client.projects.billRates.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -115,7 +115,7 @@ describe('Projects', function() {
 
       it('should show a specific bill rate for a given project with GET to /projects/<id>/bill_rates/<id>',function() {
         // object_literal { projectId:4, billRatesId: 201 }
-        var req = client.projects.billRates.show(4,201);
+        var req = client.projects.billRates.show({projectId:4,billRateId:201});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -123,7 +123,7 @@ describe('Projects', function() {
 
       it('should update a bill rate with a PUT and valid data to /projects/<id>/bill_rates/<id>',function() {
         // object_literal { projectId:4, billRatesId: 201, options: {} }
-        var req = client.projects.billRates.update(4,201,{});
+        var req = client.projects.billRates.update({projectId:4,billRateId:201,options:{}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -131,7 +131,7 @@ describe('Projects', function() {
 
       it('should create a bill rate with a POST and valid data to /projects/<id>/bill_rates',function() {
         // object_literal { projectId:4, options: {} }
-        var req = client.projects.billRates.create(4,{});
+        var req = client.projects.billRates.create({projectId:4,options:{}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });
@@ -139,7 +139,7 @@ describe('Projects', function() {
 
       it('should remove a bill rate with a DELETE to /projects/<id>/bill_rates/<id>',function() {
         // object_literal { projectId:4, billRateId: 201 }
-        var req = client.projects.billRates.remove(4,201);
+        var req = client.projects.billRates.remove({projectId:4,billRateId:201});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
