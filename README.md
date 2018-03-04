@@ -10,13 +10,16 @@ It is designed around this common pattern of methods:
 |**update()**|Update a resource              |
 |**remove()**|Deletes a resource             |
 
-All methods accept an object literal providing the parameters for the request. This typically comprises id values for the resources being requested and an options object. This options object's purpose varies depending on the request type.
+All methods accept an object literal providing the parameters for the API request. This typically comprises id values for the resources requested and an options object. This options object's purpose varies depending on the request type.
 
-*all()* - { options:{} } - The input to a query string.
-*show()* - { options: {} } - The input to a query string.
-*create()* - { options: {} } - The POST request body.
-*update()* - { options: {} } - The PUT request body.
-*remove()* - { options: {} } - N/A
+|Method      |Options object behaviour       |
+|------------|-------------------------------|
+|**all()**   |Input to a query string        |
+|**show()**  |Input to a query string        |
+|**create()**|POST request body              |
+|**update()**|PUT request body               |
+|**remove()**|N/A                            |
+
 
 All API calls are asynchronous and return promises.
 
