@@ -6,16 +6,16 @@ class Tags extends Base {
     this.resourceType = resourceType;
   }
 
-  all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/tags`,options);
+  all({userId='',projectId='',options={}}={}) {
+    return this.get(`${this.resourceType}${userId}${projectId}/tags`,options);
   }
 
-  create(resourceId,options={}) {
-    return this.post(`${this.resourceType}${resourceId}/tags`,options);
+  create({userId='',projectId='',options={}}={}) {
+    return this.post(`${this.resourceType}${userId}${projectId}/tags`,options);
   }
 
-  remove(resourceId,tagId,options={}) {
-    return this.delete(`${this.resourceType}${resourceId}/tags/${tagId}`,options);
+  remove({userId='',projectId='',tagId='',options={}}={}) {
+    return this.delete(`${this.resourceType}${userId}${projectId}/tags/${tagId}`,options);
   }
 }
 

@@ -291,21 +291,21 @@ describe("User resources",function() {
       .reply(200)
 
     it("should show a list of tags for a given user with GET to /users/<id>/tags",function() {
-      var req = client.users.tags.all(4);
+      var req = client.users.tags.all({userId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should create a tag for a user with a valid POST to /users/<id>/tags',function() {
-      var req = client.users.tags.create(4,{});
+      var req = client.users.tags.create({userId:4,options:{}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
     it('should delete a tag for a user with a valid DELETE to /users/<id>/tags/<id>', function() {
-      var req = client.users.tags.remove(4,2000);
+      var req = client.users.tags.remove({ userId: 4,tagId: 2000 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });

@@ -287,21 +287,21 @@ describe('Projects', function() {
         .reply(200)
 
       it('should return all the project tags with a GET to /projects/<id>/tags',function() {
-        var req = client.projects.tags.all(4);
+        var req = client.projects.tags.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
       });
 
       it('should create a new project tag with a valid POST to /projects/<id>/tags',function() {
-        var req = client.projects.tags.create(4,{value:'TDD'});
+        var req = client.projects.tags.create({projectId:4,options:{value:'TDD'}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });
       });
 
       it('should delete a project tag with a DELETE to /projects/<id>/tags/<id>',function() {
-        var req = client.projects.tags.remove(4,1001);
+        var req = client.projects.tags.remove({projectId:4,tagId:1001});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
