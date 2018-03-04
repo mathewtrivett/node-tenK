@@ -321,21 +321,21 @@ describe('Projects', function() {
       .reply(201)
 
       it('should get all the time entries for a given project with GET to /projects/<id>/time_entries',function() {
-        var req = client.projects.timeEntries.all(4);
+        var req = client.projects.timeEntries.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
       });
 
       it('should get a specific time entry for a given project with GET to /projects/<id>/time_entries/<id>',function() {
-        var req = client.projects.timeEntries.show(4,101);
+        var req = client.projects.timeEntries.show({projectId:4,timeEntryId:101});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
       });
 
       it('should create a new time entry with a valid POST to /projects/<id>/time_entries',function() {
-        var req = client.projects.timeEntries.create(4, {user_id:200, assignable_id:4, date: '2018-02-28',hours: 0.5});
+        var req = client.projects.timeEntries.create({projectId:4, options:{user_id:200, assignable_id:4, date: '2018-02-28',hours: 0.5}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });
@@ -348,7 +348,7 @@ describe('Projects', function() {
       .reply(200)
 
       it('should return all the time entry categories for a given project',function() {
-        var req = client.projects.timeEntryCategories.all(4);
+        var req = client.projects.timeEntryCategories.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });

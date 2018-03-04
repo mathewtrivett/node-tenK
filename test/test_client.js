@@ -414,7 +414,7 @@ describe('Client Resources', function() {
     });
 
     it("should return a time entry by id with GET to /time_entries/<id>",function() {
-      var req = client.timeEntries.show(4);
+      var req = client.timeEntries.show({timeEntryId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data').that.is.an('array');

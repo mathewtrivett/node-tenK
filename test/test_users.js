@@ -326,35 +326,35 @@ describe("User resources",function() {
       .reply(200)
 
     it("should list all time entries for a user with a valid GET to /users/<id>/time_entries",function() {
-      var req = client.users.timeEntries.all(4);
+      var req = client.users.timeEntries.all({userId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should get a given time entry for a user with a GET to /users/<id>/time_entries/<id>',function() {
-      var req = client.users.timeEntries.show(4,101);
+      var req = client.users.timeEntries.show({userId:4,timeEntryId:101});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should create a time Entry for a user with a valid POST to /users/<id>/time_entries',function() {
-      var req = client.users.timeEntries.create(4,{});
+      var req = client.users.timeEntries.create({userId:4,options:{}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
     it('should update a time entry for a user with a valid PUT to /users/<id>/time_entries/<id>',function() {
-      var req = client.users.timeEntries.update(4,101,{});
+      var req = client.users.timeEntries.update({userId:4,timeEntryId:101,options:{}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should delete a given time entry for a given user with DELETE to /users/<id>/time_entries/<id>', function() {
-      var req = client.users.timeEntries.remove(4,101);
+      var req = client.users.timeEntries.remove({userId:4,timeEntryId:101});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
