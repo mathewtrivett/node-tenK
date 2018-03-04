@@ -174,7 +174,7 @@ describe('Client Resources', function() {
     });
 
     it('should fetch all the Time Fees with GET to /budget_items', function() {
-      var req = client.budgetItems.all({item_type:'TimeFees'});
+      var req = client.budgetItems.all({options:{item_type:'TimeFees'}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data');
@@ -183,21 +183,21 @@ describe('Client Resources', function() {
     });
 
     it('should return a budget item by ID with GET to /budget_items/<id>', function() {
-      var req = client.budgetItems.show(4)
+      var req = client.budgetItems.show({budgetItemId:4})
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should update a budget item by ID with PUT to /budget_items/<id>', function() {
-      var req = client.budgetItems.update(4, {amount:1001});
+      var req = client.budgetItems.update({budgetItemId:4, options:{amount:1001}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should delete a budget item by ID with DELETE to /budget_items/<id>', function() {
-      var req = client.budgetItems.remove(4);
+      var req = client.budgetItems.remove({budgetItemId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });

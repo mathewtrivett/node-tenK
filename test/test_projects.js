@@ -168,7 +168,7 @@ describe('Projects', function() {
 
       it('it should get all the budget items of a certain type with a GET to /projects/<id>/budget_items',function() {
         // object_literal { projectId:4, options: { item_type: 'TimeFees' } }
-        var req = client.projects.budgetItems.all(4,{item_type:'TimeFees'});
+        var req = client.projects.budgetItems.all({projectId:4,options:{item_type:'TimeFees'}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         })
@@ -176,7 +176,7 @@ describe('Projects', function() {
 
       it('should return a specific budget item for a given project with GET to /projects/<id>/budget_items/<id>',function() {
         // object_literal { projectId:4, budgetItemId:201 }
-        var req = client.projects.budgetItems.show(4,201);
+        var req = client.projects.budgetItems.show({projectId:4,budgetItemId:201});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -184,7 +184,7 @@ describe('Projects', function() {
 
       it('should create a budget item with a POST and valid data to /projects/<id>/budget_items',function() {
         // object_literal { projectId:4, options:{ item_type: 'Expenses', amount:300} }
-        var req = client.projects.budgetItems.create(4,{item_type: 'Expenses', amount: 400.00});
+        var req = client.projects.budgetItems.create({projectId:4,options:{item_type: 'Expenses', amount: 400.00}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });
@@ -192,7 +192,7 @@ describe('Projects', function() {
 
       it('should update a budget item with a PUT and valid data to /projects/<id>/budget_items',function() {
         // object_literal { projectId:4, budgetItemId:2002, options:{amount:300} }
-        var req = client.projects.budgetItems.update(4,2002,{amount:300});
+        var req = client.projects.budgetItems.update({projectId:4,budgetItemId:2002,options:{amount:300}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
