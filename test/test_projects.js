@@ -50,7 +50,7 @@ describe('Projects', function() {
 
     describe('#create',function() {
       it('should create a user with a valid POST to /users',function() {
-        var req = client.projects.create({});
+        var req = client.projects.create({options:{}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });
@@ -222,7 +222,12 @@ describe('Projects', function() {
         });
       });
 
-      it('should update a expense item with a valid PUT to /projects/<id>/users/<id>/expense_items/<id>');
+      it('should update a expense item with a valid PUT to /projects/<id>/users/<id>/expense_items/<id>', function() {
+        var req = client.projects.expenseItems.update({projectId:4,userId:200,expenseEntryId:1000,options:{}});
+        return req.then(function(res) {
+          expect(res.statusCode).to.equal(200);
+        });
+      });
     });
 
     describe('#expenseItemCategories',function(){
@@ -361,7 +366,7 @@ describe('Projects', function() {
       .reply(200)
 
       it('should fetch all the users for a project with a GET to /projects/<id>/users',function() {
-        var req = client.projects.users.all(4);
+        var req = client.projects.users.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         })

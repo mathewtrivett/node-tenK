@@ -28,7 +28,7 @@ describe('Users', function() {
         .get(/users\/\d+$/)
         .reply(200,{data:[],paging:{}});
       it('should return user with the given id with a GET to /users/<id>',function() {
-        var req = client.users.show(100232);
+        var req = client.users.show({userId:100232});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
           expect(res.body).to.have.property('data');
@@ -53,7 +53,7 @@ describe('Users', function() {
         .reply(200);
 
       it('should update the user with the given id with a PUT to /users/<id>',function() {
-          var req = client.users.update(100232, {
+          var req = client.users.update({userId:100232, options : {
             "id": 1,
             "first_name": "Chris",
             "last_name": "James",
@@ -84,7 +84,7 @@ describe('Users', function() {
             "login_type": "saml",
             "thumbnail": "",
             "created_at": "2015-11-13T20:38:10Z",
-            "updated_at": "2015-11-13T20:38:10Z"});
+            "updated_at": "2015-11-13T20:38:10Z"}});
           return req.then(function(res) {
             expect(res.statusCode).to.equal(200);
           });
@@ -107,7 +107,7 @@ describe('Users', function() {
         .reply(201);
 
       it('should create a user with a valid POST to /users',function() {
-        var req = client.users.create({
+        var req = client.users.create({options:{
           "id": 1,
           "first_name": "Chris",
           "last_name": "James",
@@ -138,7 +138,7 @@ describe('Users', function() {
           "login_type": "saml",
           "thumbnail": "",
           "created_at": "2015-11-13T20:38:10Z",
-          "updated_at": "2015-11-13T20:38:10Z"});
+          "updated_at": "2015-11-13T20:38:10Z"}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });

@@ -1,8 +1,8 @@
 var { Base } = require('./Base.js');
 
 class Approvals extends Base {
-  constructor(...args) {
-    super(...args);
+  constructor(client) {
+    super(client);
   }
 
   all({options={}}={}) {

@@ -19,28 +19,23 @@ class Users extends Base {
     this.timeEntries = new TimeEntries(`users/`,client);
   }
 
-  all(resourceId,options={}) {
-    if(['projects/'].includes(this.resourceType)) {
-      return this.get(`${this.resourceType}${resourceId}/users`,options);
-    } else {
+  all({projectId='', options={}}={}) {
+    if(this.resourceType !== 'projects/') {
       return this.get(`${this.resourceType}users`,options);
-    }
-  }
-
-  show(resourceId,userId,options={}) {
-    if(arguments.length <=2) {
-      options = userId;
-      return this.get(`${this.resourceType}users/${resourceId}`, options);
     } else {
-      return this.get(`${this.resourceType}${resourceId}users/${userId}`, options);
+      return this.get(`${this.resourceType}${projectId}/users`,options);
     }
   }
 
-  create(options={}) {
+  show({userId='',options={}}={}) {
+    return this.get(`${this.resourceType}users/${userId}`, options);
+  }
+
+  create({options={}}= {}) {
     return this.post(`users`, options);
   }
 
-  update(userId,options={}) {
+  update({userId='',options={}}={}) {
     return this.put(`users/${userId}`,options);
   }
 }

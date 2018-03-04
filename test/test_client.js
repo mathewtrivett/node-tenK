@@ -227,7 +227,7 @@ describe('Client Resources', function() {
     });
 
     it('should return a discipline with a GET to /disciplines/<id>', function() {
-      var req = client.disciplines.show(10000);
+      var req = client.disciplines.show({disciplineId:10000});
       return req.then(function(res){
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data');
@@ -297,7 +297,7 @@ describe('Client Resources', function() {
     });
 
     it('should return a leave type by id with GET to /leave_types/<id>', function() {
-      var req = client.leaveTypes.show(100000);
+      var req = client.leaveTypes.show({leaveTypeId:100000});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data');
@@ -339,7 +339,7 @@ describe('Client Resources', function() {
     });
 
     it('should return a placeholder by id with GET to /placeholder_resources/<id>',function() {
-      var req = client.placeholders.show(4);
+      var req = client.placeholders.show({placeholderId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.have.property('data').that.is.an('array');
@@ -348,21 +348,21 @@ describe('Client Resources', function() {
     });
 
     it('should create a placeholder with valid POST to /placeholder_resources',function() {
-      var req = client.placeholders.create({title:'Placeholder test'});
+      var req = client.placeholders.create({options:{title:'Placeholder test'}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
     it('should update a placeholder by id with PUT to /placeholder_resources/<id>',function() {
-      var req = client.placeholders.update(4,{title:'New title'});
+      var req = client.placeholders.update({placeholderId:4,options:{title:'New title'}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should delete a placeholder by id with DELETE to /placeholder_resources/<id>',function() {
-      var req = client.placeholders.remove(4);
+      var req = client.placeholders.remove({placeholderId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       })
@@ -384,7 +384,7 @@ describe('Client Resources', function() {
     });
 
     it('should list an individual role on with a GET to /roles/<id>',function() {
-      var req = client.roles.show(808);
+      var req = client.roles.show({roleId:808});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });

@@ -26,26 +26,24 @@ class Projects extends Base {
     this.users = new Users(`projects/`,client); // Need to pass in a resource type here?
   }
 
-  all(options={}) {
-    return this.get('projects',options);
+  all({options={}}={}) {
+    return this.get('projects', options);
   }
 
-  show(options={}) {
-    if(!options.options) options.options = {};
-    return this.get(`projects/${options.projectId}`, options.options);
+  show({projectId='',options={}}={}) {
+    return this.get(`projects/${projectId}`, options);
   }
 
-  create(options={}) {
+  create({options={}}={}) {
     return this.post('projects', options);
   }
 
-  update(options={}) {
-    if(!options.options) options.options = {};
-    return this.put(`projects/${options.projectId}`, options.options);
+  update({projectId='',options={}}={}) {
+    return this.put(`projects/${projectId}`, options);
   }
 
-  remove(options={}) {
-    return this.delete(`projects/${options.projectId}`);
+  remove({projectId='',options={}}={}) {
+    return this.delete(`projects/${projectId}`);
   }
 }
 

@@ -1,28 +1,28 @@
 var { Base } = require('./Base.js');
 
 class Placeholders extends Base {
-  constructor(...args) {
-    super(...args);
+  constructor(client) {
+    super(client);
   }
 
-  all(options={}) {
+  all({options={}}={}) {
     return this.get(`placeholder_resources`,options);
   }
 
-  show(placeholderResourceId,options={}) {
-    return this.get(`placeholder_resources/${placeholderResourceId}`, options);
+  show({placeholderId='',options={}}) {
+    return this.get(`placeholder_resources/${placeholderId}`, options);
   }
 
-  create(options={}) {
+  create({options={}}={}) {
     return this.post(`placeholder_resources`,options);
   }
 
-  update(placeholderResourceId, options={}) {
-    return this.put(`placeholder_resources/${placeholderResourceId}`,options);
+  update({placeholderId='', options={}}={}) {
+    return this.put(`placeholder_resources/${placeholderId}`,options);
   }
 
-  remove(placeholderResourceId) {
-    return this.delete(`placeholder_resources/${placeholderResourceId}`);
+  remove({placeholderId=''}={}) {
+    return this.delete(`placeholder_resources/${placeholderId}`);
   }
 
 }

@@ -5,7 +5,7 @@ class Holidays extends Base {
     super(client);
   }
 
-  all(options={}) {
+  all({options={}}={}) {
     return this.get(`holidays`,options);
   }
 }

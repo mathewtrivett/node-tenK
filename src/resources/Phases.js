@@ -3,8 +3,8 @@ var { Base } = require('./Base.js');
 Phases
 */
 class Phases extends Base {
-  constructor(resourceType,...args) {
-    super(...args);
+  constructor(resourceType,client) {
+    super(client);
     this.resourceType = resourceType;
   }
 
