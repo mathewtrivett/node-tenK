@@ -206,35 +206,35 @@ describe("User resources",function() {
       .reply(200)
 
     it("should return the availability of a given user with a GET to /users/<id>/availabilities", function() {
-      var req = client.users.availability.all(101);
+      var req = client.users.availability.all({ userId:101 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should get a given availability of a given user with GET to /users/<id>/availabilities/<id>',function() {
-      var req = client.users.availability.show(5,101);
+      var req = client.users.availability.show({userId:5, availabilityId: 101 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should update an availability for a given user with a valid PUT to /users/<id>/availabilities/<id>',function() {
-      var req = client.users.availability.update(5,101,{});
+      var req = client.users.availability.update({userId:5,availabilityId:101,options:{}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it('should create an availability for a given user with a valid POST to /users/<id>/availabilities', function() {
-      var req = client.users.availability.create(5,{});
+      var req = client.users.availability.create({userId:5,options:{}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
     it('should delete an availability for a given user and id with DELETE to /users/<id>/availabilities/<id>',function() {
-      var req = client.users.availability.remove(5,100);
+      var req = client.users.availability.remove({userId:5,availabilityId:100});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
