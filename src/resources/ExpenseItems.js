@@ -6,29 +6,24 @@ class ExpenseItems extends Base {
     this.resourceType = resourceType;
   }
 
-  all(resourceId, options={}) {
-    return this.get(`${this.resourceType}${resourceId}/expense_items`, options);
+  all({userId = '', projectId = '', options = {}} = {}) {
+    return this.get(`${this.resourceType}${userId}${projectId}/expense_items`, options);
   }
 
-  show(resourceId, expenseEntryId, options={}) {
-    return this.get(`${this.resourceType}${resourceId}/expense_items/${expenseEntryId}`, options);
+  show({userId = '', projectId = '',expenseEntryId = '', options={}} = {}) {
+    return this.get(`${this.resourceType}${userId}${projectId}/expense_items/${expenseEntryId}`, options);
   }
 
-  create(resourceId, options={}) {
-    return this.post(`${this.resourceType}${resourceId}/expense_items`,options);
+  create({userId = '', projectId = '', options = {}} = {}) {
+    return this.post(`${this.resourceType}${userId}${projectId}/expense_items`,options);
   }
 
-  update(options) {
-    if(!options.expenseEntryId) options.expenseEntryId = '';
-    if(!options.resourceId) options.projectId = '';
-    if(!options.userId) options.userId = '';
-    if(!options.options) options.options = {}
-
-    return this.put(`${this.resourceType}${options.resourceId}/users/${options.userId}/expense_items/${options.expenseEntryId}`, options.options);
+  update({projectId = '', userId = '', expenseEntryId = '',options = {}} = {}) {
+    return this.put(`${this.resourceType}${projectId}/users/${userId}/expense_items/${expenseEntryId}`, options);
   }
 
-  remove(resourceId,expenseEntryId) {
-    return this.delete(`${this.resourceType}${resourceId}/expense_items/${expenseEntryId}`);
+  remove({projectId = '', userId = '', expenseEntryId = ''} = {}) {
+    return this.delete(`${this.resourceType}${userId}${projectId}/expense_items/${expenseEntryId}`);
   }
 }
 
@@ -38,12 +33,11 @@ class ExpenseItemCategories extends Base {
     this.resourceType = resourceType;
   }
 
-  all(resourceId, options={}) {
-    if(['projects/'].includes(this.resourceType)) {
-      return this.get(`${this.resourceType}${resourceId}/expense_item_categories`,options);
-    } else {
+  all({projectId = '', options = {}} = {}) {
+    if(this.resourceType !== 'projects/') {
       return this.get(`${this.resourceType}expense_item_categories`,options);
     }
+    return this.get(`${this.resourceType}${projectId}/expense_item_categories`,options);
   }
 }
 

@@ -11,7 +11,7 @@ describe('Users', function() {
     describe('#all', function() {
       nock(API_BASE, { reqheaders:{ 'auth':'test-token'} })
         .get('/users')
-        .reply(200,{data:[],paging:{}});
+        .reply(200,{ data:[], paging:{}});
 
       it('should return all users with a GET request to /users',function() {
         var req = client.users.all();
@@ -253,28 +253,28 @@ describe("User resources",function() {
       .reply(200)
 
     it("should return the expense entries for a given user with GET to /users/<id>/expense_items",function() {
-      var req = client.users.expenseEntries.all(4);
+      var req = client.users.expenseEntries.all({userId:4});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it("should return the expense entry for a given user with GET to /users/<id>/expense_items/<id>",function() {
-      var req = client.users.expenseEntries.show(4,20000);
+      var req = client.users.expenseEntries.show({userId:4,expenseEntryId:20000});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });
     });
 
     it("should create an expense entry with a valid POST to /users/<id>/expense_items",function() {
-      var req = client.users.expenseEntries.create(4,{});
+      var req = client.users.expenseEntries.create({userId:4,options:{}});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
       });
     });
 
     it("should delete an expense entry with a DELETE to /users/<id>/expense_items/<id>", function() {
-      var req = client.users.expenseEntries.remove(4,20000);
+      var req = client.users.expenseEntries.remove({userId:4,expenseEntryId:20000});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });

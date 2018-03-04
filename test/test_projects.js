@@ -209,14 +209,14 @@ describe('Projects', function() {
       .reply(200);
 
       it('should return all the expense items for a given project with GET to /projects/<id>/expense_items',function() {
-        var req = client.projects.expenseItems.all(4);
+        var req = client.projects.expenseItems.all({ projectId:4 });
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
       });
 
       it('should return a specific expense item with a GET to /projects/<id>/expense_items/<id>',function(){
-        var req = client.projects.expenseItems.show(4,10000001);
+        var req = client.projects.expenseItems.show({projectId:4,expenseEntryId:10000001});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
@@ -231,7 +231,7 @@ describe('Projects', function() {
         .reply(200)
 
       it('should return the expense item categories for a given project with GET to /projects/<id>/expense_item_categories',function() {
-        var req = client.projects.expenseItemCategories.all(4);
+        var req = client.projects.expenseItemCategories.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         })

@@ -6,35 +6,20 @@ class Assignments extends Base {
     this.resourceType = resourceType;
   }
 
-  all(options={}) {
-    if(!options.options) options.options = {};
-    if(!options.projectId) options.projectId = '';
-    if(!options.userId) options.userId = '';
-
-    return this.get(`${this.resourceType}${options.projectId}${options.userId}/assignments`, options.options);
+  all({projectId = '', userId = '', options = {}} = {}) {
+    return this.get(`${this.resourceType}${projectId}${userId}/assignments`, options);
   }
 
-  show(options={}) {
-    if(!options.options) options.options = {};
-    if(!options.projectId) options.projectId = '';
-    if(!options.userId) options.userId = '';
-
-    return this.get(`${this.resourceType}${options.projectId}${options.userId}/assignments/${options.assignmentId}`,options.options);
+  show({projectId = '', userId = '', assignmentId = '', options = {}} = {}) {
+    return this.get(`${this.resourceType}${projectId}${userId}/assignments/${assignmentId}`,options);
   }
 
-  create(options={}) {
-    if(!options.options) options.options = {};
-    if(!options.projectId) options.projectId = '';
-    if(!options.userId) options.userId = '';
-
-    return this.post(`${this.resourceType}${options.projectId}${options.userId}/assignments`,options.options);
+  create({projectId = '', userId = '', options = {}} = {}) {
+    return this.post(`${this.resourceType}${projectId}${userId}/assignments`,options);
   }
 
-  remove(options={}) {
-    if(!options.projectId) options.projectId = '';
-    if(!options.userId) options.userId = '';
-
-    return this.delete(`${this.resourceType}${options.projectId}${options.userId}/assignments/${options.assignmentId}`);
+  remove({projectId = '', userId = '', assignmentId = '', options = {}} = {}) {
+    return this.delete(`${this.resourceType}${projectId}${userId}/assignments/${assignmentId}`);
   }
 }
 
