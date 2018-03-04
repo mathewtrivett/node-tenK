@@ -20,7 +20,7 @@ describe('Client',function() {
     // Given we have a API Key
     var token = 'test-token';
     // When we initialise a new client object
-    var client = new TenK(token);
+    var client = new TenK({token:token});
 
     it('should have an auth token matching the given token', function(done) {
       // Then the client should have a token equal to the passed token.
@@ -46,7 +46,7 @@ describe('Client',function() {
   describe('#initWithTokenAndAPIBase',function() {
     var token = 'test-token';
     var uri = 'https://api.test.com';
-    var client = new TenK(token,uri);
+    var client = new TenK({token:token,apiBase:uri});
 
     it('should have a authToken set to the given token', function(done) {
       expect(client.authToken).to.equal(token);
@@ -61,7 +61,7 @@ describe('Client',function() {
 });
 
 describe('Client Resources', function() {
-  var client = new TenK('test-token');
+  var client = new TenK({token:'test-token'});
   var API_BASE = 'https://vnext-api.10000ft.com/api/v1';
 
   describe("#approvals", function() {

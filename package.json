@@ -7,7 +7,10 @@
     "10kft",
     "client",
     "time tracking",
-    "project management"
+    "project management",
+    "api",
+    "wrapper",
+    "nodejs"
   ],
   "main": "index.js",
   "scripts": {

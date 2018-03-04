@@ -38,9 +38,9 @@ function defaultRequest(url, endpoint, { headers, body, qs, method}) {
 @param {string} api_base - defaults to the staging server if api_base not given.
 */
 class TenK {
-    constructor(token, api_base) {
+    constructor({token = '', apiBase = 'https://vnext-api.10000ft.com/api/v1/'} = {}) {
       this.authToken = token;
-      this.apiBase = api_base ? api_base : 'https://vnext-api.10000ft.com/api/v1/';
+      this.apiBase = apiBase;
       this.headers = {
         'auth': this.authToken,
         'User-Agent': 'node-tenK',

@@ -1,3 +1,4 @@
+Node-Tenk is a simple wrapper around the [10000ft API](https://github.com/10Kft/10kft-api). All API are asynchronous and return promises. All functions destructure arguments from an object literal.
 
 # Install
 
@@ -10,21 +11,26 @@ npm install node-tenK
 
 ## Create a client
 
-```
-# Staging client
-const TenK = new TenK({token: 'YOUR_STAGING_API_TOKEN'});
+The client defaults to using the staging server apiBase to avoid you manipulating important data accidentally.
 
-# Production client
-const TenK = new TenK({token: 'YOUR_PRODUCTION_API_TOKEN', api_base: 'https://app.10000ft.com/api/v1/'});
+```
+const TenK = new TenK({token: 'YOUR_STAGING_API_TOKEN'});
+```
+
+To initialise a production client simply pass in the production apiBase as well as your production token.
+```
+const TenK = new TenK({token: 'YOUR_PRODUCTION_API_TOKEN', apiBase: 'https://app.10000ft.com/api/v1/'});
 ```
 
 ## Projects
+
+
 ```
 # Get all projects for this account
-TenK.projects.all(options)
+TenK.projects.all({options:{}})
 
 # Show a specific project
-TenK.projects.show(projectId)
+TenK.projects.show({projectId:## })
 
 # Create a new projects
 TenK.projects.create(options)

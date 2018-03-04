@@ -4,7 +4,7 @@ var nock = require('nock');
 var _ = require('underscore');
 
 const API_BASE = 'https://vnext-api.10000ft.com/api/v1';
-const client = new TenK('test-token');
+const client = new TenK({token:'test-token'});
 const HEADERS = { reqheaders:{ 'auth':'test-token'} };
 
 describe('Projects', function() {
