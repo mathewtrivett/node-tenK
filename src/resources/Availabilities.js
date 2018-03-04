@@ -6,24 +6,24 @@ class Availabilities extends Base {
     this.resourceType = resourceType;
   }
 
-  all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/availabilities`,options);
+  all({userId='',options={}}={}) {
+    return this.get(`${this.resourceType}${userId}/availabilities`,options);
   }
 
-  show(resourceId,availabilityId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/availabilities/${availabilityId}`,options);
+  show({ userId='', availabilityId='',options = {}} = {}) {
+    return this.get(`${this.resourceType}${userId}/availabilities/${availabilityId}`,options);
   }
 
-  create(resourceId,options={}) {
-    return this.post(`${this.resourceType}${resourceId}/availabilities`,options);
+  create({userId='',options={}}={}) {
+    return this.post(`${this.resourceType}${userId}/availabilities`,options);
   }
 
-  update(resourceId,availabilityId,options={}) {
-    return this.put(`${this.resourceType}${resourceId}/availabilities/${availabilityId}`,options);
+  update({userId='',availabilityId='',options={}}={}) {
+    return this.put(`${this.resourceType}${userId}/availabilities/${availabilityId}`,options);
   }
 
-  remove(resourceId,availabilityId) {
-    return this.delete(`${this.resourceType}${resourceId}/availabilities/${availabilityId}`);
+  remove({userId='',availabilityId=''}={}) {
+    return this.delete(`${this.resourceType}${userId}/availabilities/${availabilityId}`);
   }
 };
 
