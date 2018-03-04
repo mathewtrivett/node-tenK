@@ -47,20 +47,20 @@ const TenK = new TenK({token: 'YOUR_PRODUCTION_API_TOKEN', apiBase: 'https://app
 
 ## Approvals
 ```
-TenK.approvals.all();
-TenK.approvals.create(options);
-TenK.approvals.remove(approvalId);
+TenK.approvals.all({ options: {} });
+TenK.approvals.create({ options:{} });
+TenK.approvals.remove({ approvalId:## });
 ```
 
 ## Disciplines
 ```
-TenK.disciplines.all();
-TenK.disciplines.show(disciplineId);
+TenK.disciplines.all({ options: {} });
+TenK.disciplines.show({ disciplineId: });
 ```
 
 ## Holidays
 ```
-TenK.holidays.all();
+TenK.holidays.all({ options: {} });
 ```
 
 ## Projects
@@ -195,19 +195,19 @@ TenK.users.assignments.remove({ userId:##, assignmentId:## });
 ## User availability
 ```
 TenK.users.availability.all({ userId:## });
-TenK.users.availability.show(userId, availabilityId);
-TenK.users.availability.create(userId, options);
-TenK.users.availability.update(userId, availabilityId, options);
-TenK.users.availability.remove(userId, availabilityId);
+TenK.users.availability.show({ userId:##, availabilityId:## });
+TenK.users.availability.create({ userId:##, options:{} });
+TenK.users.availability.update({ userId:##, availabilityId:##, options:{} });
+TenK.users.availability.remove({ userId:##, availabilityId:## });
 ```
 
 ## Placeholders
 ```
-TenK.placeholders.all(options);
-TenK.placeholders.show(placeholderId);
-TenK.placeholders.create(options);
-TenK.placeholders.update(placeholderId, options);
-TenK.placeholders.remove(placeholderId);
+TenK.placeholders.all({ options:{} });
+TenK.placeholders.show({ placeholderId:## });
+TenK.placeholders.create({ options:{} });
+TenK.placeholders.update({ placeholderId:##, options: {} });
+TenK.placeholders.remove({ placeholderId:## });
 ```
 
 ### By Project
