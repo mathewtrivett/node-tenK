@@ -40,6 +40,24 @@ To initialise a production client simply pass in the production apiBase as well 
 const TenK = new TenK({token: 'YOUR_PRODUCTION_API_TOKEN', apiBase: 'https://app.10000ft.com/api/v1/'});
 ```
 
+## Approvals
+```
+TenK.approvals.all();
+TenK.approvals.create(options);
+TenK.approvals.remove(approvalId);
+```
+
+## Disciplines
+```
+TenK.disciplines.all();
+TenK.disciplines.show(disciplineId);
+```
+
+## Holidays
+```
+TenK.holidays.all();
+```
+
 ## Projects
 
 For available options for Projects read the [official 10000ft API docs](https://github.com/10Kft/10kft-api).
@@ -61,7 +79,9 @@ TenK.projects.update({ projectId:##, options:{} });
 TenK.projects.remove({ projectId:## });
 ```
 
-## Project Assignments
+## Assignments
+
+### By Project
 
 ```
 TenK.projects.assignments.all({ projectId:## });
@@ -79,7 +99,7 @@ TenK.projects.billRates.update({ projectId:##, billRateId:##, options:{} });
 TenK.projects.billRates.remove({ projectId:##, billRateId:## });
 ```
 
-## By User
+### By User
 ```
 TenK.users.billRates.all({ userId:## });
 TenK.users.billRates.show({ userId:##, billRateId:## });
@@ -87,78 +107,87 @@ TenK.users.billRates.update({ userId:##, billRateId:##, options: {} });
 TenK.users.billRates.remove({ userId: ##, billRateId:## });
 ```
 
-# Expense entries
+## Expense entries
 
-## By Project
+### By Project
 ```
 TenK.projects.expenseEntries.all({ projectId:## });
 TenK.projects.expenseEntries.show({ projectId:##, expenseEntryId:## });
 TenK.projects.expenseEntries.create({ projectId:##, options: {} });
 ```
 
-## By User
+### By User
 ```
 TenK.users.expenseEntries.all({ userId:## });
 TenK.users.expenseEntries.show({ userId:##, expenseEntryId:## });
 TenK.users.expenseEntries.remove({ userId: ##, expenseEntryId: ## });
 ```
 
-# Tags
+## Tags
 
-## By Project
+### By Project
 ```
 TenK.projects.tags.all({ projectId: ## });
 TenK.projects.tags.show({ projectId: ##, tagId: ## });
 ```
 
-## By User
+### By User
 
 ```
 TenK.users.tags.all({ userId: ## });
 TenK.users.tags.all({ userId: ##, tagId: ## });
 ```
 
-# Time entries
+## Time entries
+
+```
+Tenk.timeEntries.all({ options:{} });
+Tenk.timeEntries.show({ timeEntryId:##, options:{} });
+```
+
+### By Project
 ```
 TenK.projects.timeEntries.all({ projectId:## });
-
-# Show a specific time entry
 TenK.projects.timeEntries.show({ projectId:##, timeEntryId:## });
+TenK.project.timeEntries.create({ projectId:##, options: {} });
 TenK.projects.timeEntryCategories.all({ projectId:## }); //
 ```
 
-# Project phases
+### By User
 ```
-# Show all phases for `projectId`
+TenK.users.timeEntries.all({ userId:## });
+TenK.users.timeEntries.show({ userId:##, timeEntryId:## });
+TenK.users.timeEntries.create({ options: {} });
+TenK.users.timeEntries.update({ userId:##, timeEntryId:##, options:{} });
+TenK.users.timeEntries.remove({ userId:##, timeEntryId:## });
+TenK.users.timeEntryCategories.all({ userId:## }); //
+```
+
+## Project phases
+```
 TenK.projects.phases.all({ projectId:## });
 ```
 
-# Show all placeholders for `projectId`
-```
-TenK.projects.placeholders.all({ projectId:## });
-```
-
-# Show all the users on `projectId`
-```
-TenK.projects.users.all({ projectId:## });
-```
-
-# Users
+## Users
 ```
 TenK.users.all({ options:{} });
 TenK.users.show({ userId:## });
 TenK.users.create({ options:{} });
 ```
 
-# User Assignments
+### By Project
+```
+TenK.projects.users.all({ projectId:## });
+```
 
+## User Assignments
 ```
 TenK.users.assignments.all({ userId:## });
 TenK.users.assignments.create({ userId:## });
 TenK.users.assignments.remove({ userId:##, assignmentId:## });
 ```
 
-# User availability
+## User availability
 ```
 TenK.users.availability.all({ userId:## });
 TenK.users.availability.show(userId, availabilityId);
@@ -167,8 +196,7 @@ TenK.users.availability.update(userId, availabilityId, options);
 TenK.users.availability.remove(userId, availabilityId);
 ```
 
-
-# Placeholders
+## Placeholders
 ```
 TenK.placeholders.all(options);
 TenK.placeholders.show(placeholderId);
@@ -177,20 +205,7 @@ TenK.placeholders.update(placeholderId, options);
 TenK.placeholders.remove(placeholderId);
 ```
 
-# Disciplines
+### By Project
 ```
-TenK.disciplines.all();
-TenK.disciplines.show(disciplineId);
-```
-
-# Approvals signature
-```
-TenK.approvals.all();
-TenK.approvals.create(options);
-TenK.approvals.remove(approvalId);
-```
-
-# Lists all holidays
-```
-TenK.holidays.all();
+TenK.projects.placeholders.all({ projectId:## });
 ```
