@@ -2,11 +2,13 @@ Node-Tenk is a simple wrapper around the [10000ft API](https://github.com/10Kft/
 
 It is designed around this common pattern of methods:
 
-*all()* - Fetch a collection of resources
-*show()* - Fetch an individual resource
-*create()* - Create a resource.
-*update()* - Update a resource.
-*remove()* - Deletes a resource.
+|Method      |Behaviour                      |
+|------------|-------------------------------|
+|**all()**   |Fetch a collection of resources|
+|**show()**  |Fetch an individual resource   |
+|**create()**|Create a resource              |
+|**update()**|Update a resource              |
+|**remove()**|Deletes a resource             |
 
 All methods accept an object literal providing the parameters for the request. This typically comprises id values for the resources being requested and an options object. This options object's purpose varies depending on the request type.
 
