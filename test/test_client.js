@@ -110,7 +110,7 @@ describe('Client Resources', function() {
         ],
         status: 'pending'
       };
-      var req = client.approvals.create(data);
+      var req = client.approvals.create({options:data});
       return req.then(function(res) {
         expect(res.statusCode).to.equal(201);
         expect(res.body).to.have.property('data');
@@ -119,7 +119,7 @@ describe('Client Resources', function() {
     });
 
     it("should delete an approval given a valid DELETE request",function() {
-      var req = client.approvals.remove(4);
+      var req = client.approvals.remove({ approvalId: 4 });
       return req.then(function(res) {
         expect(res.statusCode).to.equal(200);
       });

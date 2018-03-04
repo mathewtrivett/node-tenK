@@ -6,15 +6,15 @@ class ExpenseItems extends Base {
     this.resourceType = resourceType;
   }
 
-  all({userId = '', projectId = '', options = {}} = {}) {
+  all({projectId = '', userId = '', options = {}} = {}) {
     return this.get(`${this.resourceType}${userId}${projectId}/expense_items`, options);
   }
 
-  show({userId = '', projectId = '',expenseEntryId = '', options={}} = {}) {
+  show({projectId = '', userId = '', expenseEntryId = '', options={}} = {}) {
     return this.get(`${this.resourceType}${userId}${projectId}/expense_items/${expenseEntryId}`, options);
   }
 
-  create({userId = '', projectId = '', options = {}} = {}) {
+  create({projectId = '', userId = '', options = {}} = {}) {
     return this.post(`${this.resourceType}${userId}${projectId}/expense_items`,options);
   }
 

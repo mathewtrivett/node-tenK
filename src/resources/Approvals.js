@@ -5,15 +5,15 @@ class Approvals extends Base {
     super(...args);
   }
 
-  all(options={}) {
+  all({options={}}={}) {
     return this.get(`approvals`, options);
   }
 
-  create(options={}) {
+  create({options={}}={}) {
     return this.post(`approvals`, options);
   }
 
-  remove(approvalId) {
+  remove({ approvalId = '' } = {}) {
     return this.delete(`approvals/${approvalId}`);
   }
 }
