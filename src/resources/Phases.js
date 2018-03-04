@@ -8,16 +8,16 @@ class Phases extends Base {
     this.resourceType = resourceType;
   }
 
-  all(resourceId,options={}) {
-    return this.get(`${this.resourceType}${resourceId}/phases`,options);
+  all({projectId='',options={}}={}) {
+    return this.get(`${this.resourceType}${projectId}/phases`,options);
   }
 
-  create(resourceId,options={}) {
-    return this.post(`${this.resourceType}${resourceId}/phases`,options);
+  create({projectId='',options={}}={}) {
+    return this.post(`${this.resourceType}${projectId}/phases`,options);
   }
 
-  update(resourceId,phaseId,options={}) {
-    return this.put(`${this.resourceType}${resourceId}/phases/${phaseId}`,options);
+  update({projectId='',phaseId='',options={}}={}) {
+    return this.put(`${this.resourceType}${projectId}/phases/${phaseId}`,options);
   }
 }
 

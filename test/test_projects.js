@@ -254,21 +254,21 @@ describe('Projects', function() {
         .reply(200)
 
       it('should get all phases for a given project with GET to /projects/<id>/phases',function() {
-        var req = client.projects.phases.all(4);
+        var req = client.projects.phases.all({projectId:4});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
       });
 
       it('should create a phase with a valid POST to /projects/<id>/phases',function() {
-        var req = client.projects.phases.create(4,{phase_name:'New phase',starts_at: '2018-02-28', ends_at: '2018-03-02'});
+        var req = client.projects.phases.create({projectId:4,options:{phase_name:'New phase',starts_at: '2018-02-28', ends_at: '2018-03-02'}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(201);
         });
       });
 
       it('should update a phase with a valid PUT to /projects/<id>/phases/<id>',function() {
-        var req = client.projects.phases.update(4,5,{ends_at:'2018-03-05'});
+        var req = client.projects.phases.update({projectId:4,phaseId:5,options:{ends_at:'2018-03-05'}});
         return req.then(function(res) {
           expect(res.statusCode).to.equal(200);
         });
