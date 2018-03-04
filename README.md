@@ -1,9 +1,27 @@
-Node-Tenk is a simple wrapper around the [10000ft API](https://github.com/10Kft/10kft-api). All API are asynchronous and return promises. All functions destructure arguments from an object literal.
+Node-Tenk is a simple wrapper around the [10000ft API](https://github.com/10Kft/10kft-api).
+
+It is designed around this common pattern of methods:
+
+*all()* - Fetch a collection of resources
+*show()* - Fetch an individual resource
+*create()* - Create a resource.
+*update()* - Update a resource.
+*remove()* - Deletes a resource.
+
+All methods accept an object literal providing the parameters for the request. This typically comprises id values for the resources being requested and an options object. This options object's purpose varies depending on the request type.
+
+*all()* - { options:{} } - The input to a query string.
+*show()* - { options: {} } - The input to a query string.
+*create()* - { options: {} } - The POST request body.
+*update()* - { options: {} } - The PUT request body.
+*remove()* - { options: {} } - N/A
+
+All API calls are asynchronous and return promises.
+
 
 # Install
 
 ```
-# Install
 npm install node-tenK
 ```
 
@@ -11,7 +29,7 @@ npm install node-tenK
 
 ## Create a client
 
-The client defaults to using the staging server apiBase to avoid you manipulating important data accidentally.
+The client defaults to the staging server to prevent accidental manipulation of important data.
 
 ```
 const TenK = new TenK({token: 'YOUR_STAGING_API_TOKEN'});
@@ -24,140 +42,155 @@ const TenK = new TenK({token: 'YOUR_PRODUCTION_API_TOKEN', apiBase: 'https://app
 
 ## Projects
 
+For available options for Projects read the [official 10000ft API docs](https://github.com/10Kft/10kft-api).
 
 ```
 # Get all projects for this account
-TenK.projects.all({options:{}})
+TenK.projects.all({ options:{} });
 
 # Show a specific project
-TenK.projects.show({projectId:## })
+TenK.projects.show({ projectId:##, options: {}});
 
 # Create a new projects
-TenK.projects.create(options)
+TenK.projects.create({ options: {} });
 
 # Update a project
-TenK.projects.update(projectId, options)
+TenK.projects.update({ projectId:##, options:{} });
 
 # Delete a project
-TenK.projects.remove(projectId)
+TenK.projects.remove({ projectId:## });
 ```
 
 ## Project Assignments
 
 ```
-TenK.projects.assignments.all(projectId)
-TenK.projects.assignments.show(projectId, assignmentId)
+TenK.projects.assignments.all({ projectId:## });
+TenK.projects.assignments.show({ projectId:##, assignmentId:## });
 ```
 
 ## Bill Rates
 
 ### By Project
 ```
-TenK.projects.billRates.all(projectId, options)
-TenK.projects.billRates.show(projectId, billRateId)
-TenK.projects.billRates.create(projectId, options)
-TenK.projects.billRates.update(projectId, billRateId, options)
-TenK.projects.billRates.remove(projectId, billRateId)
+TenK.projects.billRates.all({ projectId:##, options:{} });
+TenK.projects.billRates.show({ projectId:##, billRateId:## });
+TenK.projects.billRates.create({ projectId:##, options:{} });
+TenK.projects.billRates.update({ projectId:##, billRateId:##, options:{} });
+TenK.projects.billRates.remove({ projectId:##, billRateId:## });
 ```
 
 ## By User
 ```
-TenK.users.billRates.all(userId)
-TenK.users.billRates.show(userId, billRateId)
-TenK.users.billRates.update(userId, billRateId, options)
-TenK.users.billRates.remove(userId, billRateId)
+TenK.users.billRates.all({ userId:## });
+TenK.users.billRates.show({ userId:##, billRateId:## });
+TenK.users.billRates.update({ userId:##, billRateId:##, options: {} });
+TenK.users.billRates.remove({ userId: ##, billRateId:## });
 ```
 
 # Expense entries
 
 ## By Project
 ```
-TenK.projects.expenseEntries.all(projectId)
-TenK.projects.expenseEntries.show(projectId, expenseEntryId)
-TenK.projects.expenseEntries.create(projectId, options)
+TenK.projects.expenseEntries.all({ projectId:## });
+TenK.projects.expenseEntries.show({ projectId:##, expenseEntryId:## });
+TenK.projects.expenseEntries.create({ projectId:##, options: {} });
 ```
 
 ## By User
 ```
-TenK.users.expenseEntries.all(userId)
-TenK.users.expenseEntries.show(userId, expenseEntryId)
-TenK.users.expenseEntries.remove(userId, expenseEntryId)
+TenK.users.expenseEntries.all({ userId:## });
+TenK.users.expenseEntries.show({ userId:##, expenseEntryId:## });
+TenK.users.expenseEntries.remove({ userId: ##, expenseEntryId: ## });
 ```
 
-# Project tags
+# Tags
+
+## By Project
 ```
-TenK.projects.tags.all(projectId) // Project tags
-TenK.projects.tags.show(projectId, tagId) // Project tag
+TenK.projects.tags.all({ projectId: ## });
+TenK.projects.tags.show({ projectId: ##, tagId: ## });
 ```
 
+## By User
+
+```
+TenK.users.tags.all({ userId: ## });
+TenK.users.tags.all({ userId: ##, tagId: ## });
+```
 
 # Time entries
 ```
-TenK.projects.timeEntries.all(projectId)
+TenK.projects.timeEntries.all({ projectId:## });
 
 # Show a specific time entry
-TenK.projects.timeEntries.show(projectId, timeEntryId)
-TenK.projects.timeEntryCategories.all(projectId) //
+TenK.projects.timeEntries.show({ projectId:##, timeEntryId:## });
+TenK.projects.timeEntryCategories.all({ projectId:## }); //
 ```
 
+# Project phases
 ```
 # Show all phases for `projectId`
-TenK.projects.phases.all(projectId) // Project phases
+TenK.projects.phases.all({ projectId:## });
+```
 
 # Show all placeholders for `projectId`
-TenK.projects.placeholders.all(projectId) // Project phases
+```
+TenK.projects.placeholders.all({ projectId:## });
+```
 
 # Show all the users on `projectId`
-TenK.projects.users.all(projectId)
+```
+TenK.projects.users.all({ projectId:## });
 ```
 
 # Users
 ```
-TenK.users.all(options) // Would return a JSON for all users.
-TenK.users.show(userId) // Would return an individual user.
-TenK.users.create(options)
-TenK.users.tags.all(userId)
+TenK.users.all({ options:{} });
+TenK.users.show({ userId:## });
+TenK.users.create({ options:{} });
 ```
 
 # User Assignments
 
 ```
-TenK.users.assignments.all(userId)
-TenK.users.assignments.create(userId)
-TenK.users.assignments.remove(userId, assignmentId)
-TenK.users.availability.all(userId)
-TenK.users.availability.show(userId, availabilityId)
-TenK.users.availability.create(userId, options)
-TenK.users.availability.update(userId, availabilityId, options)
-TenK.users.availability.remove(userId, availabilityId)
+TenK.users.assignments.all({ userId:## });
+TenK.users.assignments.create({ userId:## });
+TenK.users.assignments.remove({ userId:##, assignmentId:## });
+```
+
+# User availability
+```
+TenK.users.availability.all({ userId:## });
+TenK.users.availability.show(userId, availabilityId);
+TenK.users.availability.create(userId, options);
+TenK.users.availability.update(userId, availabilityId, options);
+TenK.users.availability.remove(userId, availabilityId);
 ```
 
 
 # Placeholders
-
 ```
-TenK.placeholders.all(options)
-TenK.placeholders.show(placeholderId)
-TenK.placeholders.create(options)
-TenK.placeholders.update(placeholderId, options)
-TenK.placeholders.remove(placeholderId)
+TenK.placeholders.all(options);
+TenK.placeholders.show(placeholderId);
+TenK.placeholders.create(options);
+TenK.placeholders.update(placeholderId, options);
+TenK.placeholders.remove(placeholderId);
 ```
 
 # Disciplines
-
 ```
-TenK.disciplines.all()
-TenK.disciplines.show(disciplineId)
+TenK.disciplines.all();
+TenK.disciplines.show(disciplineId);
 ```
 
 # Approvals signature
 ```
-TenK.approvals.all()
-TenK.approvals.create(options)
-TenK.approvals.remove(approvalId)
+TenK.approvals.all();
+TenK.approvals.create(options);
+TenK.approvals.remove(approvalId);
 ```
 
 # Lists all holidays
 ```
-TenK.holidays.all()
+TenK.holidays.all();
 ```
