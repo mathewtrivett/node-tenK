@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/mathewtrivett/node-tenK/badge.svg?branch=master)](https://coveralls.io/github/mathewtrivett/node-tenK?branch=master)
+
 Node-Tenk is a simple wrapper around the [10000ft API](https://github.com/10Kft/10kft-api).
 
 It is designed around this common pattern of methods:
