@@ -57,7 +57,7 @@ TenK.approvals.remove({ approvalId:## });
 ## Disciplines
 ```
 TenK.disciplines.all({ options: {} });
-TenK.disciplines.show({ disciplineId: });
+TenK.disciplines.show({ disciplineId:## });
 ```
 
 ## Holidays
@@ -156,7 +156,7 @@ Tenk.timeEntries.show({ timeEntryId:##, options:{} });
 ```
 TenK.projects.timeEntries.all({ projectId:## });
 TenK.projects.timeEntries.show({ projectId:##, timeEntryId:## });
-TenK.project.timeEntries.create({ projectId:##, options: {} });
+TenK.projects.timeEntries.create({ projectId:##, options: {} });
 TenK.projects.timeEntryCategories.all({ projectId:## }); //
 ```
 
